@@ -9,3 +9,8 @@ Pessoa pessoa(char *nome, int idade){
     p.idade = (unsigned int) idade;
     return p;
 }
+
+
+Jogador jogador(){
+
+}

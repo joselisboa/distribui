@@ -9,6 +9,12 @@ typedef struct _pessoa {
     unsigned int idade;
 } Pessoa;
 
+typedef struct _jogador Jogador;
+struct _jogador {
+    Pessoa jogador;
+    // dados do jogo
+};
+
 Pessoa pessoa(char *nome, int idade);
 
 #endif
