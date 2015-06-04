@@ -2,30 +2,15 @@
 #include <string.h>
 #include <stdarg.h>
 #include <windows.h>   // WinApi header
+#include "zelib.h"
 
-#define TRUE 1
-#define true 1
-#define FALSE 0
-#define false 0
-
-typedef enum _cores {
-    BLACK = 0,
-    BLUE_FADE,// = FOREGROUND_BLUE,
-    GREEN_FADE,// = FOREGROUND_GREEN,
-    CYAN_FADE,// = FOREGROUND_GREEN | FOREGROUND_BLUE,
-    RED_FADE,// = FOREGROUND_RED,
-    MAGENTA_FADE,// = FOREGROUND_RED | FOREGROUND_BLUE,
-    YELLOW_FADE,// = FOREGROUND_RED | FOREGROUND_GREEN,
-    WHITE_FADE,// = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE,
-    GRAY,// = FOREGROUND_INTENSITY,
-    BLUE,// = FOREGROUND_INTENSITY | FOREGROUND_BLUE,
-    GREEN,// = FOREGROUND_INTENSITY | FOREGROUND_GREEN,
-    CYAN,// = FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE,
-    RED,// = FOREGROUND_INTENSITY | FOREGROUND_RED,
-    MAGENTA,// = FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE,
-    YELLOW,// = FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN,
-    WHITE// = FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE
-} Cores;
+// um free mais seguro (põe o ponteiro NULO)
+void _zeFree(void **pp){
+    if(pp != NULL && *pp != NULL){
+        free(*pp);
+        *pp = NULL;
+    }
+}
 
 void die(char *msg){
     puts(msg);
@@ -40,7 +25,7 @@ void _linha(char c){
     printf("%s", s);
 }
 
-void _entrelinhas(char c, char *format, ...){
+void zentrelinhas(char c, char *format, ...){
     va_list args;
     HANDLE  hConsole;
 
@@ -97,10 +82,59 @@ void _printf(int k, char *format, ...){
 //TODO switch arguments
 void pause(char *msg){
     putz(msg, 4);
-    getchar();
+    getch();
 }
 
 void halt(char *msg){
     putz(msg, 12);
     pause("press Enter to continue");
+}
+
+
+/*
+char buff[] = "hello world";
+trimstr(buff, 1, -1);// "ello worl"
+*/
+char *trimstr(char *buff, int a, int b) {
+    int i, len = strlen(buff);
+    if (a < 0 || b > 0) return buff;
+    if (a == 0 && b == 0) return buff;
+    if (a > len + b) return buff;
+
+    if (a == 0) {
+        buff[len + b] = '\0';
+        return buff;
+    }
+
+    for (i = 0; a + i < len + b; i++) {
+        buff[i] = buff[a + i];
+    }
+
+    buff[i] = '\0';
+
+    return buff;
+}
+
+/*
+char buff[] = "the fast fox";
+trimstr(buff, 2, 8);// "e fast f"
+*/
+char *substr(char *buff, int i, int n) {
+    return trimstr(buff, i, i + n - strlen(buff));
+
+    //char subbuff[255];
+    //if (i + n > 254 || i+n > strlen(buff)) return buff;
+    //memcpy(subbuff, &buff[i], len);
+    //subbuff[i+len] = '\0';
+    //strcpy_s(buff, strlen(buff) + 1, subbuff);
+    //return buff;
+}
+
+char *caps(char buff[])
+{
+    unsigned int i;
+    for (i = 0; i < strlen(buff); i++)
+        buff[i] = toupper(buff[i]);
+
+    return buff;
 }
