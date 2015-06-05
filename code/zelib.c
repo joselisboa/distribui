@@ -4,6 +4,21 @@
 #include <windows.h>   // WinApi header
 #include "zelib.h"
 
+int option(const char * const options[], int n){
+    int i, escolha = 0;
+
+    for(i=0; i < n; i++) {
+        printf(" %d|%s ", i+1, options[i]);
+    }
+
+    do {
+        printf("\n> ");
+        scanf("%d", &escolha);
+    } while(escolha < 1 || escolha > n);
+
+    return escolha;
+}
+
 // um free mais seguro (põe o ponteiro NULO)
 void _zeFree(void **pp){
     if(pp != NULL && *pp != NULL){

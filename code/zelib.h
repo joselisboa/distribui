@@ -29,6 +29,8 @@ typedef enum _cores {
     WHITE// = FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE
 } Cores;
 
+int option(const char * const [], int);
+
 void die(char *);
 void _linha(char);
 void zentrelinhas(char, char *, ...);
