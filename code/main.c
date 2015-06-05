@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "zelib.c"
-#include "distribui.h"
 #include "distribui.c"
+#include "dados.c"
 
 void intro(){
     system("cls");
@@ -21,9 +21,11 @@ void sair(){
 }
 
 void iniciar() {
+    Pessoa *pessoas = NULL;
     char option, c;
     int msg = FALSE;
     char buffer[255] = { '\0' };
+
     do {
         system("cls");
         intro();
@@ -38,11 +40,12 @@ void iniciar() {
         switch(c = getch()){
             case '1':
                 strcpy(buffer, "1|Jogar");
-                //jogar();
+                //jogar(pessoas);
                 break;
             case '2':
-                strcpy(buffer, "2|Dados");
-                //dados();
+                //strcpy(buffer, "2|Dados");
+                pessoas = dados(pessoas);
+
                 break;
             case '3':
                 strcpy(buffer, "3|Ajuda");
@@ -59,9 +62,10 @@ void iniciar() {
 }
 
 int main(int argc, char *argv[]){
+
     intro();
     iniciar();
-    
+
     /*
     //puts(pessoa1.nome);
     putz("putz BLUE", BLUE);
