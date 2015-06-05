@@ -2,27 +2,13 @@
 #include "dados.h"
 #include "zelib.h"
 
-int dadosOption(){
-    int i, option, escolha = 0;
-
-    for(i=0; i < DADOS_OPTIONS_N; i++) {
-        printf(" %d|%s ", i+1, DADOS_OPTIONS[i]);
-    }
-
-    do {
-        printf("\nEscolha: ");
-        scanf("%d", &escolha);
-    } while(escolha < 1 || escolha > DADOS_OPTIONS_N);
-
-    return escolha;
-}
-
 Pessoa *dados(Pessoa *pessoas){
     //*/
-    int option;
+    int opt;
 
-    switch(option = dadosOption()){
+    switch(opt = option(DADOS_OPTIONS, DADOS_OPTIONS_N)){
     case 1:
+        //dados_adicionar(pessoas);
         //break;
     case 2:
         //break;
@@ -31,7 +17,7 @@ Pessoa *dados(Pessoa *pessoas){
     case 4:
         //break;
     default:
-        printf("option=%d\n", option);
+        printf("option=%d\n", opt);
     }
     //*/
 

@@ -11,6 +11,5 @@ const char * const DADOS_OPTIONS[DADOS_OPTIONS_N] = {
 };
 
 Pessoa *dados(Pessoa *);
-int dadosOption();
 
 #endif // DADOS_H
