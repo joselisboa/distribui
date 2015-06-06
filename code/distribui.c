@@ -4,7 +4,6 @@
 #include "distribui.h"
 #include "dados.h"
 
-
 Pessoa criar_pessoa(char *nome, int idade){
     Pessoa pessoa;
     pessoa.id = ++Id;
@@ -91,7 +90,7 @@ void iniciar() {
 void sair(){
     // AFAZER: cleanup
 
-    intro();
+    splash();
 
     die("Adeus");
 }
