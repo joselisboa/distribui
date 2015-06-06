@@ -20,9 +20,13 @@ struct _jogador {
 //----------------
 #define MENU_OPTIONS_N 4
 const char * const MENU_OPTIONS[MENU_OPTIONS_N] = {
-    "Jogo", "Dados", "Ajuda", "Sair"
+    "Jogar", "Dados", "Ajuda", "Sair"
 };
 
-Pessoa pessoa(char *nome, int idade);
+Pessoa criar_pessoa(char *, int);
+Jogador criar_jogador(Pessoa);
+void iniciar();
+void sair();
+void splash();
 
 #endif
