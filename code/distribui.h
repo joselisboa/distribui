@@ -7,13 +7,28 @@ typedef struct _pessoa {
     int id;
     char nome[100];
     unsigned int idade;
+    struct _pessoa *prox;
 } Pessoa;
+
+/*/
+typedef struct _no No;
+typedef No*, pNo;
+struct _no {
+	Pessoa *pessoa;
+	Pessoa *prox;
+	Pessoa Pprev;
+};
+typedef *Pessoa pPessoa;
+
+//*/
 
 typedef struct _jogador Jogador;
 struct _jogador {
     Pessoa jogador;
-    // dados do jogo
+
+    // AFAZER dados do jogo
 };
+
 
 //----------------
 // Menu Principal
