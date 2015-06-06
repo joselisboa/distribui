@@ -30,7 +30,7 @@ typedef enum _cores {
 } Cores;
 
 int option(const char * const [], int);
-
+void zenter(char *);
 void die(char *);
 void _linha(char);
 void zentrelinhas(char, char *, ...);

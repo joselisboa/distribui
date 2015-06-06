@@ -19,6 +19,12 @@ int option(const char * const options[], int n){
     return escolha;
 }
 
+void zenter(char *s){
+    char linha[81] = { '\0' };
+    sprintf(linha, "%*s\n", 40+strlen(s)/2, s);
+    zentrelinhas('-', linha);
+}
+
 // um free mais seguro (põe o ponteiro NULO)
 void _zeFree(void **pp){
     if(pp != NULL && *pp != NULL){
