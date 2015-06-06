@@ -19,6 +19,7 @@ int main(int argc, char *argv[]){
     printz(CYAN, "Pessoa #%d: %s, %d\n", pessoa2.id, pessoa2.nome, pessoa2.idade);
     pause("press enter to continue");
     */
+    
     splash();
     halt("adeus");
     die("bye");
