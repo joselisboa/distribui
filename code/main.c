@@ -4,84 +4,12 @@
 #include "distribui.c"
 #include "dados.c"
 
-void intro(){
-    system("cls");
-    char linha[81] = { '\0' };
-    char *s = "21230536|Jose Lisboa";
-
-    sprintf(linha, "%*s\n", 40+strlen(s)/2, s);
-    zentrelinhas('-', linha);
-
-    //pause("Qualquer Tecla Para Continuar");
-}
-
-void sair(){
-    intro();
-    die("Adeus");
-}
-
-void iniciar() {
-    Pessoa *pessoas = NULL;
-    int opt;
-
-    do {
-        intro();
-
-        switch(opt = option(MENU_OPTIONS, MENU_OPTIONS_N)){
-            case 2:
-                //strcpy(buffer, "2|Dados");
-                pessoas = dados(pessoas);
-                break;
-            case 4:
-                sair();
-                break;
-            case 3:
-                //ajuda();
-                //break;
-            case 1:
-                //jogar(pessoas);
-                //break;
-            default:
-                pause("nao definido - qualquer tecla para continuar");
-        }
-
-        /*/
-        char c;
-        int msg = FALSE;
-        char buffer[255] = { '\0' };
-        puts("1|Jogar  2|Dados  3|Ajuda  4|Sair");
-        if(msg) putz(buffer, 11);
-        else msg = TRUE;
-        //scanf(" %d", &option);
-        //fflush(stdin);
-        switch(c = getch()){
-            case '1':
-                strcpy(buffer, "1|Jogar");
-                //jogar(pessoas);
-                break;
-            case '2':
-                //strcpy(buffer, "2|Dados");
-                pessoas = dados(pessoas);
-
-                break;
-            case '3':
-                strcpy(buffer, "3|Ajuda");
-                //ajuda();
-                break;
-            case '4':
-                sair();
-                break;
-            default:
-                sprintf(buffer, "opcao '%c' invalida", c);
-        }
-        //*/
-
-    } while(TRUE);
-}
-
 int main(int argc, char *argv[]){
 
-    intro();
+    // splash
+    splash();
+    
+    // iniciar o aplicativo
     iniciar();
 
     /*
@@ -91,7 +19,7 @@ int main(int argc, char *argv[]){
     printz(CYAN, "Pessoa #%d: %s, %d\n", pessoa2.id, pessoa2.nome, pessoa2.idade);
     pause("press enter to continue");
     */
-
+    splash();
     halt("adeus");
     die("bye");
 
