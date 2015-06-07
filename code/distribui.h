@@ -1,5 +1,7 @@
-#ifndef DISTRIBUI
-#define DISTRIBUI
+#ifndef DISTRIBUI_H
+#define DISTRIBUI_H
+
+#define PESSOAS_DAT "pessoas.dat"
 
 int Id = 0;
 
@@ -29,19 +31,20 @@ struct _jogador {
     // AFAZER dados do jogo
 };
 
-
 //----------------
 // Menu Principal
 //----------------
-#define MENU_OPTIONS_N 4
+#define MENU_OPTIONS_N 5
 const char * const MENU_OPTIONS[MENU_OPTIONS_N] = {
-    "Jogar", "Dados", "Ajuda", "Sair"
+    "Jogar", "Dados", "Ajuda", "Sair", "Util"
 };
+
+void Iniciar();
+void Terminar();
+void splash();
 
 Pessoa criar_pessoa(char *, int);
 Jogador criar_jogador(Pessoa);
-void iniciar();
-void sair();
-void splash();
+Pessoa *_pessoas();
 
 #endif

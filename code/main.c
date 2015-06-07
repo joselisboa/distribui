@@ -3,27 +3,17 @@
 #include "zelib.c"
 #include "distribui.c"
 #include "dados.c"
+#include "util.c"
+#include "testes.c"
 
 int main(int argc, char *argv[]){
 
-    // splash
     splash();
-    
-    // iniciar o aplicativo
-    iniciar();
 
-    /*
-    //puts(pessoa1.nome);
-    putz("putz BLUE", BLUE);
-    printz(MAGENTA, "Pessoa #%d: %s, %d\n", pessoa1.id, pessoa1.nome, pessoa1.idade);
-    printz(CYAN, "Pessoa #%d: %s, %d\n", pessoa2.id, pessoa2.nome, pessoa2.idade);
-    pause("press enter to continue");
-    */
-    
-    splash();
-    halt("adeus");
-    die("bye");
+    Iniciar();
 
-    // will never get here
+    Terminar();
+
+    // a rotina nunca chega aqui
     exit(EXIT_SUCCESS);
 }
