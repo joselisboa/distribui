@@ -44,4 +44,6 @@ char *trimstr(char *, int, int);
 char *substr(char *, int, int);
 char *caps(char []);
 
+int file_exists(char []);
+
 #endif

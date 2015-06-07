@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <unistd.h>
 #include <windows.h>   // WinApi header
 #include "zelib.h"
 
@@ -158,4 +159,10 @@ char *caps(char buff[])
         buff[i] = toupper(buff[i]);
 
     return buff;
+}
+
+
+int file_exists(char fname[]){
+    if(access(fname, F_OK) != -1) return 1;
+    return 0;
 }
