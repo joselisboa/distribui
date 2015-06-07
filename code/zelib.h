@@ -38,6 +38,7 @@ void zentrelinhas(char, char *, ...);
 void putz(char *, int);
 void printz(int, char *, ...);
 void _printf(int, char *, ...);
+void pausa();
 void pause(char *);
 void halt(char *);
 char *trimstr(char *, int, int);

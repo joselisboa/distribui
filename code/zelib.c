@@ -103,8 +103,12 @@ void _printf(int k, char *format, ...){
 
 //TODO switch arguments
 void pause(char *msg){
-    putz(msg, 4);
+    putz(msg, 8);
     getch();
+}
+
+void pausa(){
+    pause("premir qualquer tecla para continuar");
 }
 
 void halt(char *msg){
