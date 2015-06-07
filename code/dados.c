@@ -5,7 +5,7 @@
 
 // função principal
 Pessoa *Dados(Pessoa *pessoas){
-    int opt;
+    int opt, id;
 
     do{
         // cabeçalho
@@ -17,22 +17,37 @@ Pessoa *Dados(Pessoa *pessoas){
             _listar(pessoas);
             break;
         case 2: // Adicionar
-            printz(11, "[%s]\n", DADOS_OPTIONS[opt-1]);
+            printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
+            id = Id;
             pessoas = _adicionar(pessoas);
+            if(Id > id) {
+                putz("pessoa adicionada com sucesso", 2);
+                if(_guardar(pessoas) > 0) putz("lista atualizada", 2);
+                else putz("lista nao atualizada", 12);
+            }
+            pausa();
             break;
+
         case 3:// Remover
-        case 4:// Guardar
-            printz(11, "[%s]\n", DADOS_OPTIONS[opt-1]);
-            if(_guardar(pessoas, Id) > 0) putz("guardado com sucesso", 11);
-            pause("continuar");
+            printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
+            printf("Id: ");
+            scanf("%d", &id);
+            if(id > 0) {
+                pessoas = _remover(id, pessoas);
+                if(_guardar(pessoas)) putz("lista atualizada", 2);
+                else putz("lista nao atualizada", 12);
+            }
+            else putz("Id invalido", 12);
+            pausa();
             break;
-        case 5:// voltar
+
+        case 4:// voltar
             return pessoas;
         default:
             printz(11, "[%s]\n", DADOS_OPTIONS[opt-1]);
             putz("NAO IMPLEMENTADO", 12);
 
-            pause("continuar");
+            pausa();
         }
     } while(TRUE);
 
@@ -41,7 +56,7 @@ Pessoa *Dados(Pessoa *pessoas){
 }
 
 // guarda a lista de pessoas no ficheiro
-int _guardar(Pessoa *lista, int n)
+int _guardar(Pessoa *lista)
 {
     FILE *fd = fopen(PESSOAS_DAT, "wb");
 
@@ -74,7 +89,6 @@ Pessoa *_adicionar(Pessoa *pessoas){
         return NULL;
     }
 
-    putz("[adicionar pessoa]", 15);
     //fflush(stdin);
 
     printf("Nome: ");
@@ -110,4 +124,33 @@ void _listar(Pessoa *pessoas){
     }
 
     pause("premir qualquer tecla para continuas");
+}
+
+// remove pessoa pelo id (permite haver mais que uma pessoa com o mesmo nome)
+Pessoa *_remover(int id, Pessoa *lista){
+    Pessoa *aux, *pessoa = lista;
+    
+    // lista vazia
+    if(lista == NULL) return NULL;
+
+    // é a primeira pessoa
+    if(pessoa->id == id) {
+        aux = pessoa;
+        lista = pessoa->prox;
+        zeFree(aux);
+        return lista;
+    }
+
+    // pessoas seguintes
+    while(pessoa->prox != NULL){
+        if(pessoa->prox->id == id){
+            aux = pessoa->prox;
+            pessoa->prox = aux->prox;
+            zeFree(aux);
+            break;
+        }
+        pessoa = pessoa->prox;
+    }
+
+    return lista;
 }

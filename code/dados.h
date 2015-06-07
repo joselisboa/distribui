@@ -3,15 +3,16 @@
 #ifndef DADOS_H
 #define DADOS_H
 
-#define DADOS_OPTIONS_N 5
+#define DADOS_OPTIONS_N 4
 
 const char * const DADOS_OPTIONS[DADOS_OPTIONS_N] = {
-    "Listar", "Adicionar", "Remover", "Guardar", "voltar"
+    "Listar", "Adicionar", "Remover", "voltar"
 };
 
 Pessoa *Dados(Pessoa *);
 Pessoa *_adicionar(Pessoa *);
-int _guardar(Pessoa *, int);
+Pessoa *_remover(int, Pessoa *);
+int _guardar(Pessoa *);
 void _listar(Pessoa *);
 
 #endif // DADOS_H
