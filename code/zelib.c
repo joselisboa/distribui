@@ -9,21 +9,70 @@ int option(const char * const options[], int n){
     int i, escolha = 0;
 
     for(i=0; i < n; i++) {
-        printf(" %d|%s ", i+1, options[i]);
+        printz(8, " %d|", i+1 );
+        printf("%s ", options[i]);
     }
 
     do {
         printf("\n> ");
         scanf("%d", &escolha);
+
     } while(escolha < 1 || escolha > n);
 
     return escolha;
 }
 
+/*/ DEVELOPMENT
+int zoption(const char * const options[], int n){
+    int i, escolha = 0;
+    char c;
+
+    for(i=0; i < n; i++) {
+        printz(8, " %d|", i+1 );
+        printf("%s ", options[i]);
+    }
+
+    do {
+        printf("\n> ");
+
+        //scanf("%d", &escolha);
+
+        switch(c = getch()){
+            case '1':
+                strcpy(buffer, "1|Jogar");
+                //jogar(pessoas);
+                break;
+            case '2':
+                //strcpy(buffer, "2|Dados");
+                pessoas = dados(pessoas);
+
+                break;
+            case '3':
+                strcpy(buffer, "3|Ajuda");
+                //ajuda();
+                break;
+            case '4':
+                sair();
+                break;
+            default:
+                sprintf(buffer, "opcao '%c' invalida", c);
+        }
+
+    } while(escolha < 1 || escolha > n);
+
+    return escolha;
+}
+//*/
+
 void zenter(char *s){
     char linha[81] = { '\0' };
     sprintf(linha, "%*s\n", 40+strlen(s)/2, s);
     zentrelinhas('-', linha);
+}
+
+void zenter_cls(char *s){
+    system("cls");
+    zenter(s);
 }
 
 // um free mais seguro (põe o ponteiro NULO)
@@ -170,3 +219,4 @@ int file_exists(char fname[]){
     if(access(fname, F_OK) != -1) return 1;
     return 0;
 }
+

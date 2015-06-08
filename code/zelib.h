@@ -31,6 +31,7 @@ typedef enum _cores {
 
 int option(const char * const [], int);
 void zenter(char *);
+void zenter_cls(char *);
 void die(char *);
 void _linha(char);
 void zentrelinhas(char, char *, ...);
@@ -48,3 +49,4 @@ char *caps(char []);
 int file_exists(char []);
 
 #endif
+
