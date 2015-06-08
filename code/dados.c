@@ -6,17 +6,20 @@
 // função principal
 Pessoa *Dados(Pessoa *pessoas){
     int opt, id;
-
-    do{
+    char *nome = "Gestao de Dados";
+    do {
         // cabeçalho
-        system("cls");
-        zenter("Gestao de Dados");
+        zenter_cls(nome);
 
         switch(opt = option(DADOS_OPTIONS, DADOS_OPTIONS_N)){
         case 1: // Listar
+            zenter_cls(nome);
             _listar(pessoas);
             break;
+
         case 2: // Adicionar
+            // AFAZER: mover para uma função
+            zenter_cls(nome);
             printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
             id = Id;
             pessoas = _adicionar(pessoas);
@@ -29,6 +32,8 @@ Pessoa *Dados(Pessoa *pessoas){
             break;
 
         case 3:// Remover
+            zenter_cls(nome);
+
             printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
             printf("Id: ");
             scanf("%d", &id);
@@ -41,13 +46,18 @@ Pessoa *Dados(Pessoa *pessoas){
             pausa();
             break;
 
-        case 4:// voltar
-            return pessoas;
-        default:
-            printz(11, "[%s]\n", DADOS_OPTIONS[opt-1]);
-            putz("NAO IMPLEMENTADO", 12);
+        case 4:
+            zenter_cls("Menu Principal");
+            //putz("[Info]", 13);
+            _info(DADOS_OPTIONS, DADOS_DESCRIPTIONS, DADOS_OPTIONS_N);
+            break;
 
-            pausa();
+        case 5:// voltar
+            return pessoas;
+
+        default:
+            zenter_cls(nome);
+            Nimplementado(DADOS_OPTIONS[opt-1]);
         }
     } while(TRUE);
 
@@ -56,8 +66,7 @@ Pessoa *Dados(Pessoa *pessoas){
 }
 
 // guarda a lista de pessoas no ficheiro
-int _guardar(Pessoa *lista)
-{
+int _guardar(Pessoa *lista){
     FILE *fd = fopen(PESSOAS_DAT, "wb");
 
     if(fd == NULL){
@@ -129,7 +138,7 @@ void _listar(Pessoa *pessoas){
 // remove pessoa pelo id (permite haver mais que uma pessoa com o mesmo nome)
 Pessoa *_remover(int id, Pessoa *lista){
     Pessoa *aux, *pessoa = lista;
-    
+
     // lista vazia
     if(lista == NULL) return NULL;
 
@@ -154,3 +163,4 @@ Pessoa *_remover(int id, Pessoa *lista){
 
     return lista;
 }
+
