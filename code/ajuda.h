@@ -11,6 +11,7 @@ const char * const AJUDA_DESCRIPTIONS[DADOS_OPTIONS_N] = {
     "Volta ao Menu Principal"
 };
 
+void Ajuda();
 void _regras();
 void _comandos();
 

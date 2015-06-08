@@ -16,7 +16,6 @@ int main(int argc, char *argv[]){
 
     Terminar();
 
-    // a rotina nunca chega aqui
+    // nunca chega aqui
     exit(EXIT_SUCCESS);
 }
-
