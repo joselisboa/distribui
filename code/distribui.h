@@ -36,7 +36,14 @@ struct _jogador {
 //----------------
 #define MENU_OPTIONS_N 5
 const char * const MENU_OPTIONS[MENU_OPTIONS_N] = {
-    "Jogar", "Dados", "Ajuda", "Sair", "Util"
+    "Jogo", "Dados", "Util", "Info", "Sair"
+};
+const char * const MENU_DESCRIPTIONS[MENU_OPTIONS_N] = {
+    "Iniciar o jogo",
+    "Gerir a lista de pessoas",
+    "Utilitarios diversos",
+    "Mostra esta lista",
+    "Terminar o aplicativo"
 };
 
 void Iniciar();
@@ -46,5 +53,8 @@ void splash();
 Pessoa criar_pessoa(char *, int);
 Jogador criar_jogador(Pessoa);
 Pessoa *_pessoas();
+void _info(const char * const *, const char * const *, const int);
+void Nimplementado(char *);
 
 #endif
+

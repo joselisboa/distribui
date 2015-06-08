@@ -34,63 +34,44 @@ void splash(){
 void Iniciar() {
     Pessoa *pessoas = _pessoas();
     int opt;
+    char *nome = "Menu Principal";
 
     do {
         // cabeçalho
-        system("cls");
-        zenter("Menu Principal");
+        zenter_cls(nome);
 
         switch(opt = option(MENU_OPTIONS, MENU_OPTIONS_N)){
+            case 1: // Jogo
+                pessoas = Jogo(pessoas);
+                break;
+
             case 2:
+                zenter_cls(nome);
                 pessoas = Dados(pessoas);
                 break;
-            case 4:
-                return;
-                //break;
-            case 5:// Util
+
+            case 3:// Util
                 Util();
                 break;
-            case 3:
-                //Ajuda();
+
+            case 5:
+                //zenter_cls(nome);
+                return;
                 //break;
+
+            case 4:
+                zenter_cls(nome);
+                _info(MENU_OPTIONS, MENU_DESCRIPTIONS, MENU_OPTIONS_N);
+
+                //Ajuda();
+                break;
             case 1:
                 //Jogar(pessoas);
                 //break;
             default:
+                zenter_cls(nome);
                 pause("nao definido - qualquer tecla para continuar");
         }
-
-        /*/
-        char c;
-        int msg = FALSE;
-        char buffer[255] = { '\0' };
-        puts("1|Jogar  2|Dados  3|Ajuda  4|Sair");
-        if(msg) putz(buffer, 11);
-        else msg = TRUE;
-        //scanf(" %d", &option);
-        //fflush(stdin);
-        switch(c = getch()){
-            case '1':
-                strcpy(buffer, "1|Jogar");
-                //jogar(pessoas);
-                break;
-            case '2':
-                //strcpy(buffer, "2|Dados");
-                pessoas = dados(pessoas);
-
-                break;
-            case '3':
-                strcpy(buffer, "3|Ajuda");
-                //ajuda();
-                break;
-            case '4':
-                sair();
-                break;
-            default:
-                sprintf(buffer, "opcao '%c' invalida", c);
-        }
-        //*/
-
     } while(TRUE);
 }
 
@@ -100,7 +81,7 @@ void Terminar(){
 
     //halt("adeus");
 
-    //splash();
+    splash();
 
     die("Adeus");
 }
@@ -140,3 +121,20 @@ Pessoa *_pessoas()
 
     return lista;
 }
+
+void _info(const char * const *options, const char * const *descriptions, const int n){
+    int i;
+    for(i=0; i < n; i++) {
+        printz(11, "[%-5s] ", options[i]);
+        printz(7, "%s\n", descriptions[i]);
+    }
+    pausa();
+}
+
+// não implementado
+void Nimplementado(char *option){
+    printz(11, "[%s]\n", option);
+    putz("NAO IMPLEMENTADO", 12);
+    pausa();
+}
+
