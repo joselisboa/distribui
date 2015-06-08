@@ -9,7 +9,7 @@ void Testes(){
         // cabeçalho
         zenter_cls(nome);
 
-        switch(opt = option(TESTES_OPTIONS, TESTES_OPTIONS_N)){
+        switch(opt = optionz(TESTES_OPTIONS, TESTES_OPTIONS_N)){
         case 1: // Cores
             zenter_cls(nome);
             _putz();
@@ -23,7 +23,7 @@ void Testes(){
             _getch();
             break;
         case 4:
-            return;
+        case 0: return;
         default:
             zenter_cls(nome);
             Nimplementado(TESTES_OPTIONS[opt-1]);
