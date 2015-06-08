@@ -16,7 +16,7 @@ void Iniciar() {
         // cabeçalho
         zenter_cls(nome);
 
-        switch(opt = option(MENU_OPTIONS, MENU_OPTIONS_N)){
+        switch(opt = optionz(MENU_OPTIONS, MENU_OPTIONS_N)){
             case 1:// Jogo
                 pessoas = Jogo(pessoas);
                 break;
@@ -31,7 +31,8 @@ void Iniciar() {
                 zenter_cls(nome);
                 _info(MENU_OPTIONS, MENU_DESCRIPTIONS, MENU_OPTIONS_N);
                 break;
-            case 5: return;
+            case 5:// Sair
+            case 0: return;
             default:
                 zenter_cls(nome);
                 Nimplementado(MENU_OPTIONS[opt-1]);
@@ -54,12 +55,12 @@ Jogador criar_jogador(Pessoa pessoa){
 
 void splash(){
     char linha[81] = { '\0' };
-    sprintf(linha, "Distribui%c%co de Pessoas", 135, 132);
+    sprintf(linha, "\"Distribui%cao de Pessoas por Grupos\"", 135);//, 132);
 
     system("cls");
     zenter("TRABALHO PRATICO PROGRAMACAO 2014/15");
-    putz(linha, 11);
-    zenter("21230536|Jose Lisboa");
+    zenterK(linha, 3);
+    zenter("21230536 | Jose Daniel dos Reis Vieira Lisboa");
     pause("Premir Qualquer Tecla Para Continuar");
     system("cls");
 }
@@ -69,8 +70,8 @@ void Terminar(){
 
     //halt("adeus");
 
-    splash();
-
+    //splash();
+    system("cls");
     die("Adeus");
 }
 
@@ -125,4 +126,3 @@ void Nimplementado(const char *option){
     putz("NAO IMPLEMENTADO", 12);
     pausa();
 }
-
