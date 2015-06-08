@@ -14,3 +14,4 @@ void _cores();
 void _caracteres();
 
 #endif // UTIL_H
+

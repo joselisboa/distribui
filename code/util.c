@@ -7,7 +7,7 @@ void Util(){
     int opt;
 
     do{
-        // cabeçalho
+        // cabeÃ§alho
         system("cls");
         zenter("Utilitarios");
 
@@ -46,3 +46,4 @@ void _caracteres(){
     }
     pause("continuar");
 }
+
