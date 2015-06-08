@@ -10,7 +10,7 @@ Pessoa *Jogo(Pessoa *pessoas){
         // cabe?lho
         zenter_cls(nome);
 
-        switch(opt = option(JOGO_OPTIONS, JOGO_OPTIONS_N)){
+        switch(opt = optionz(JOGO_OPTIONS, JOGO_OPTIONS_N)){
         case 1: // Jogar
             zenter_cls(nome);
             _jogar();
@@ -27,7 +27,7 @@ Pessoa *Jogo(Pessoa *pessoas){
             Ajuda();
             break;
         case 5:// Voltar
-            return;
+        case 0: return pessoas;
         default:
             zenter_cls(nome);
             Nimplementado(JOGO_OPTIONS[opt-1]);
