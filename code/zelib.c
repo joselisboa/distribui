@@ -22,8 +22,8 @@ int option(const char * const options[], int n){
     return escolha;
 }
 
-/*/ DEVELOPMENT
-int zoption(const char * const options[], int n){
+//*/ EM DESENVOLVIMENTO
+int optionz(const char * const options[], int n){
     int i, escolha = 0;
     char c;
 
@@ -31,31 +31,41 @@ int zoption(const char * const options[], int n){
         printz(8, " %d|", i+1 );
         printf("%s ", options[i]);
     }
-
+    putchar('\n');
     do {
-        printf("\n> ");
-
-        //scanf("%d", &escolha);
-
-        switch(c = getch()){
-            case '1':
-                strcpy(buffer, "1|Jogar");
-                //jogar(pessoas);
-                break;
-            case '2':
-                //strcpy(buffer, "2|Dados");
-                pessoas = dados(pessoas);
-
-                break;
-            case '3':
-                strcpy(buffer, "3|Ajuda");
-                //ajuda();
-                break;
-            case '4':
-                sair();
-                break;
-            default:
-                sprintf(buffer, "opcao '%c' invalida", c);
+        c = getch();
+        // 48='0', 57='9'
+        if(c > 48 && c < 58) escolha = c - 48;
+        else switch(c){
+        case 10://putz("10: []", 12);
+            break;
+        case 13://putz("13: [ENTER]", 12);
+            break;
+        case 27://putz("27: [ESCAPE]", 12);
+            return 0;
+        case 32://enter
+            //putz("32: [SPACE]", 12);
+            break;
+        case -32:// setas
+            switch(c = getch()){
+                case 72:
+                    //putz("72: [CIMA]", 13);
+                    break;
+                case 80:
+                    //putz("80: [BAIXO]", 13);
+                    break;
+                case 75:
+                    //putz("75: [ESQUERDA]", 13);
+                    break;
+                case 77:
+                    //putz("77: [DIREITA]", 13);
+                    break;
+                default:;
+                    //printz(13, "%d: %c\n", c, c);
+            }
+            break;
+        default:;
+            //printz(12, "%d: %c\n", c, c);
         }
 
     } while(escolha < 1 || escolha > n);
@@ -68,6 +78,12 @@ void zenter(char *s){
     char linha[81] = { '\0' };
     sprintf(linha, "%*s\n", 40+strlen(s)/2, s);
     zentrelinhas('-', linha);
+}
+
+void zenterK(char *s, int k){
+    char linha[81] = { '\0' };
+    sprintf(linha, "%*s", 40+strlen(s)/2, s);
+    putz(linha, k);
 }
 
 void zenter_cls(char *s){
@@ -152,7 +168,7 @@ void _printf(int k, char *format, ...){
 
 //TODO switch arguments
 void pause(char *msg){
-    putz(msg, 8);
+    zenterK(msg, 8);
     getch();
 }
 
