@@ -9,7 +9,7 @@ void Ajuda(){
         // cabe?lho
         zenter_cls(nome);
 
-        switch(opt = option(AJUDA_OPTIONS, AJUDA_OPTIONS_N)){
+        switch(opt = optionz(AJUDA_OPTIONS, AJUDA_OPTIONS_N)){
         case 1: // Regras
             zenter_cls(nome);
             _regras();
@@ -19,7 +19,7 @@ void Ajuda(){
             _comandos();
             break;
         case 3:// Voltar
-            return;
+        case 0: return;
         default:
             zenter_cls(nome);
             Nimplementado(AJUDA_OPTIONS[opt-1]);
