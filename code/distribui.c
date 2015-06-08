@@ -5,6 +5,39 @@
 #include "distribui.h"
 #include "dados.h"
 #include "util.h"
+#include "jogo.h"
+
+void Iniciar() {
+    int opt;
+    Pessoa *pessoas = _pessoas();
+    char *nome = "Menu Principal";
+
+    do {
+        // cabeçalho
+        zenter_cls(nome);
+
+        switch(opt = option(MENU_OPTIONS, MENU_OPTIONS_N)){
+            case 1:// Jogo
+                pessoas = Jogo(pessoas);
+                break;
+            case 2:// Dados
+                zenter_cls(nome);
+                pessoas = Dados(pessoas);
+                break;
+            case 3:// Util
+                Util();
+                break;
+            case 4:// Info
+                zenter_cls(nome);
+                _info(MENU_OPTIONS, MENU_DESCRIPTIONS, MENU_OPTIONS_N);
+                break;
+            case 5: return;
+            default:
+                zenter_cls(nome);
+                Nimplementado(MENU_OPTIONS[opt-1]);
+        }
+    } while(TRUE);
+}
 
 Pessoa criar_pessoa(char *nome, int idade){
     Pessoa pessoa;
@@ -30,51 +63,6 @@ void splash(){
     pause("Premir Qualquer Tecla Para Continuar");
     system("cls");
 }
-
-void Iniciar() {
-    Pessoa *pessoas = _pessoas();
-    int opt;
-    char *nome = "Menu Principal";
-
-    do {
-        // cabeçalho
-        zenter_cls(nome);
-
-        switch(opt = option(MENU_OPTIONS, MENU_OPTIONS_N)){
-            case 1: // Jogo
-                pessoas = Jogo(pessoas);
-                break;
-
-            case 2:
-                zenter_cls(nome);
-                pessoas = Dados(pessoas);
-                break;
-
-            case 3:// Util
-                Util();
-                break;
-
-            case 5:
-                //zenter_cls(nome);
-                return;
-                //break;
-
-            case 4:
-                zenter_cls(nome);
-                _info(MENU_OPTIONS, MENU_DESCRIPTIONS, MENU_OPTIONS_N);
-
-                //Ajuda();
-                break;
-            case 1:
-                //Jogar(pessoas);
-                //break;
-            default:
-                zenter_cls(nome);
-                pause("nao definido - qualquer tecla para continuar");
-        }
-    } while(TRUE);
-}
-
 
 void Terminar(){
     // AFAZER: cleanup
@@ -132,7 +120,7 @@ void _info(const char * const *options, const char * const *descriptions, const 
 }
 
 // não implementado
-void Nimplementado(char *option){
+void Nimplementado(const char *option){
     printz(11, "[%s]\n", option);
     putz("NAO IMPLEMENTADO", 12);
     pausa();

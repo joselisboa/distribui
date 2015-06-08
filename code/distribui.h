@@ -54,7 +54,7 @@ Pessoa criar_pessoa(char *, int);
 Jogador criar_jogador(Pessoa);
 Pessoa *_pessoas();
 void _info(const char * const *, const char * const *, const int);
-void Nimplementado(char *);
+void Nimplementado(const char *);
 
 #endif
 
