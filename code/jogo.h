@@ -4,11 +4,11 @@
 //-----------
 // Menu Jogo
 //-----------
-#define JOGO_OPTIONS_N 3
+#define JOGO_OPTIONS_N 5
 const char * const JOGO_OPTIONS[JOGO_OPTIONS_N] = {
     "Jogar", "Recuperar", "Salvar", "Ajuda", "Voltar"
 };
-const char * const JOGO_DESCRIPTIONS[DADOS_OPTIONS_N] = {
+const char * const JOGO_DESCRIPTIONS[JOGO_OPTIONS_N] = {
     "Inicia ou retoma o jogo",
     "Rercupera um jogo guardado"
     "Guarda o presente jogo",

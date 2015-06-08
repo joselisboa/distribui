@@ -26,7 +26,7 @@ Pessoa *Jogo(Pessoa *pessoas){
         case 4: // Ajuda
             Ajuda();
             break;
-        case 3:// Voltar
+        case 5:// Voltar
             return;
         default:
             zenter_cls(nome);
