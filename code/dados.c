@@ -11,12 +11,11 @@ Pessoa *Dados(Pessoa *pessoas){
         // cabeçalho
         zenter_cls(nome);
 
-        switch(opt = option(DADOS_OPTIONS, DADOS_OPTIONS_N)){
+        switch(opt = optionz(DADOS_OPTIONS, DADOS_OPTIONS_N)){
         case 1: // Listar
             zenter_cls(nome);
             _listar(pessoas);
             break;
-
         case 2: // Adicionar
             // AFAZER: mover para uma função
             zenter_cls(nome);
@@ -30,10 +29,8 @@ Pessoa *Dados(Pessoa *pessoas){
             }
             pausa();
             break;
-
         case 3:// Remover
             zenter_cls(nome);
-
             printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
             printf("Id: ");
             scanf("%d", &id);
@@ -45,16 +42,13 @@ Pessoa *Dados(Pessoa *pessoas){
             else putz("Id invalido", 12);
             pausa();
             break;
-
         case 4:
             zenter_cls("Menu Principal");
             //putz("[Info]", 13);
             _info(DADOS_OPTIONS, DADOS_DESCRIPTIONS, DADOS_OPTIONS_N);
             break;
-
         case 5:// voltar
-            return pessoas;
-
+        case 0: return pessoas;
         default:
             zenter_cls(nome);
             Nimplementado(DADOS_OPTIONS[opt-1]);
