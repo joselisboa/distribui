@@ -173,6 +173,7 @@ void pause(char *msg){
 }
 
 void pausa(){
+    puts("");
     pause("premir qualquer tecla para continuar");
 }
 
