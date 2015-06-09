@@ -44,8 +44,6 @@ Pessoa *Jogo(Pessoa *pessoas){
 void _jogar(){
     //Nimplementado("Jogar");
 
-
-
     pausa();
 }
 
