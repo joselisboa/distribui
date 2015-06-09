@@ -48,11 +48,6 @@ Pessoa criar_pessoa(char *nome, int idade){
     return pessoa;
 }
 
-Jogador criar_jogador(Pessoa pessoa){
-    Jogador jogador;
-    return jogador;
-}
-
 void splash(){
     char linha[81] = { '\0' };
     sprintf(linha, "\"Distribui%cao de Pessoas por Grupos\"", 135);//, 132);

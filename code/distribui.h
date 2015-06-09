@@ -12,24 +12,17 @@ typedef struct _pessoa {
     struct _pessoa *prox;
 } Pessoa;
 
-/*/
+
 typedef struct _no No;
-typedef No*, pNo;
+typedef No* pNo;
 struct _no {
 	Pessoa *pessoa;
 	Pessoa *prox;
-	Pessoa Pprev;
+	//Pessoa Pprev;
 };
-typedef *Pessoa pPessoa;
 
-//*/
+typedef Pessoa* pPessoa;
 
-typedef struct _jogador Jogador;
-struct _jogador {
-    Pessoa jogador;
-
-    // AFAZER dados do jogo
-};
 
 //----------------
 // Menu Principal
@@ -51,7 +44,6 @@ void Terminar();
 void splash();
 
 Pessoa criar_pessoa(char *, int);
-Jogador criar_jogador(Pessoa);
 Pessoa *_pessoas();
 void _info(const char * const *, const char * const *, const int);
 void Nimplementado(const char *);
