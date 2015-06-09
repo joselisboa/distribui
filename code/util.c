@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "zelib.h"
 #include "util.h"
-#include "testes.h"
+
+#include "testes.c"
 
 void Util(){
     int opt;
