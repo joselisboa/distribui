@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include "zelib.h"
 #include "distribui.h"
-#include "dados.h"
-//#include "util.h"
-//#include "jogo.h"
+
+#include "zelib.c"
+//#include "jogo.c"
+#include "dados.c"
+#include "util.c"
 
 // Menu Principal
 void Iniciar() {
@@ -23,9 +24,9 @@ void Iniciar() {
             case 2:
                 pessoas = Dados(pessoas);
                 break;
-            //case 3:// Util
-            //    Util();
-            //    break;
+            case 3:// Util
+                Util();
+                break;
             case 4:// Info
                 zenter_cls(nome);
                 Info(MENU_OPTIONS, MENU_DESCRIPTIONS, MENU_OPTIONS_N);
