@@ -1,3 +1,5 @@
+#include "distribui.h" 
+
 #ifndef JOGO_H
 #define JOGO_H
 
@@ -16,10 +18,38 @@ const char * const JOGO_DESCRIPTIONS[JOGO_OPTIONS_N] = {
     "Volta ao menu principal"
 };
 
+//-------
+// Grupo
+//-------
+typedef struct _grupo {
+	int id;
+	No *pessoas;
+	No *prox;
+} Grupo;
+// contador de grupos
+int Grupos = 0;
+// grupos
+Grupo *grupos = NULL;
+
+//---------
+// Jogador
+//---------
+typedef struct _jogador Jogador;
+struct _jogador {
+    Pessoa jogador;
+
+    // AFAZER dados do jogo
+};
+// jogadores
+Jogador jogadores[2];
+
+// função principal do jogo
 Pessoa *Jogo(Pessoa *);
+
 void _jogar();
 void _recuperar();
 void _salvar();
 
-#endif // JOGO_H
+Jogador criar_jogador(Pessoa);
 
+#endif // JOGO_H

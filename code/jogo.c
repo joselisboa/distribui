@@ -3,6 +3,11 @@
 #include "zelib.h"
 #include "ajuda.h"
 
+Jogador criar_jogador(Pessoa pessoa){
+    Jogador jogador;
+    return jogador;
+}
+
 Pessoa *Jogo(Pessoa *pessoas){
     int opt;
     char *nome = "Jogo";
@@ -37,7 +42,11 @@ Pessoa *Jogo(Pessoa *pessoas){
 }
 
 void _jogar(){
-    Nimplementado("Jogar");
+    //Nimplementado("Jogar");
+
+
+
+    pausa();
 }
 
 void _recuperar(){
@@ -47,3 +56,6 @@ void _recuperar(){
 void _salvar(){
     Nimplementado("Salvar");
 }
+
+
+//void _inserir(){}
