@@ -2,8 +2,10 @@
 #define DISTRIBUI_H
 
 #define PESSOAS_DAT "pessoas.dat"
+#define PESSOAS_TXT "pessoas.txt"
 
 int Id = 0;
+int Pessoas_N = 0;
 
 typedef struct _pessoa {
     int id;
@@ -44,8 +46,8 @@ void Terminar();
 void splash();
 
 Pessoa criar_pessoa(char *, int);
-Pessoa *_pessoas();
-void _info(const char * const *, const char * const *, const int);
+Pessoa *Pessoas();
+void Info(const char * const *, const char * const *, const int);
 void Nimplementado(const char *);
 
 #endif

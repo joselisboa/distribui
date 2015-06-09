@@ -9,7 +9,10 @@
 
 void Iniciar() {
     int opt;
+    
     Pessoa *pessoas = _pessoas();
+    //No *pessoas = Pessoas();
+    
     char *nome = "Menu Principal";
 
     do {
@@ -56,7 +59,7 @@ void splash(){
     zenter("TRABALHO PRATICO PROGRAMACAO 2014/15");
     zenterK(linha, 3);
     zenter("21230536 | Jose Daniel dos Reis Vieira Lisboa");
-    pause("Premir Qualquer Tecla Para Continuar");
+    pausa();
     system("cls");
 }
 
@@ -71,7 +74,7 @@ void Terminar(){
 }
 
 // obtém lista de pessoas a partir do ficheiro binário
-Pessoa *_pessoas()
+Pessoa *Pessoas()
 {
     Pessoa pessoa, *prev, *aux, *lista = NULL;
 
@@ -89,6 +92,10 @@ Pessoa *_pessoas()
                 puts("ERRO a alocar memoria para Pessoa\n");
                 return lista;
             }
+
+            // contador de pessoas na lista
+            Pessoas_N++;
+            
             // copiar os dados...
             aux->id = ++Id;
             aux->idade = pessoa.idade;
@@ -106,7 +113,7 @@ Pessoa *_pessoas()
     return lista;
 }
 
-void _info(const char * const *options, const char * const *descriptions, const int n){
+void Info(const char * const *options, const char * const *descriptions, const int n){
     int i;
     for(i=0; i < n; i++) {
         printz(11, "[%-5s] ", options[i]);
