@@ -4,9 +4,9 @@
 #include "distribui.h"
 
 #include "zelib.c"
-//#include "jogo.c"
+#include "jogo.c"
 #include "dados.c"
-//#include "util.c"
+#include "util.c"
 
 // Menu Principal
 void Distribui() {
@@ -18,12 +18,12 @@ void Distribui() {
         zenter_cls(DISTRIBUI_NOME);
         opt = optionz(DISTRIBUI_OPTIONS, DISTRIBUI_N);
         switch(opt){
-            //case 1: pessoas = Jogo(pessoas);
-            //break;
+            case 1: pessoas = Jogo(pessoas);
+            break;
             case 2: pessoas = Dados(pessoas);
             break;
-            //case 3: Util();
-            //break;
+            case 3: Util();
+            break;
             case 4: distribui_ajuda();
             break;
             case 5:// Sair
