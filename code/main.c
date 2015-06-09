@@ -1,14 +1,12 @@
-//#include <stdio.h>
-//#include <stdlib.h>
 #include "distribui.c"
 
 int main(int argc, char *argv[]){
 
     splash();
 
-    Iniciar();
+    Distribui();
 
-    Terminar();
+    terminar();
 
     exit(EXIT_SUCCESS);
 }

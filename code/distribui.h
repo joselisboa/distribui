@@ -1,5 +1,7 @@
 #ifndef DISTRIBUI_H
 #define DISTRIBUI_H
+#define DISTRIBUI_N 5
+#define DISTRIBUI_NOME "Menu Principal"
 
 #define PESSOAS_DAT "pessoas.dat"
 #define PESSOAS_TXT "pessoas.txt"
@@ -22,14 +24,11 @@ struct _no {
     No *prox;
 };
 
-//----------------
-// Menu Principal
-//----------------
-#define MENU_OPTIONS_N 5
-const char * const MENU_OPTIONS[MENU_OPTIONS_N] = {
-    "Jogo", "Dados", "Util", "Info", "Sair"
+const char * const DISTRIBUI_OPTIONS[DISTRIBUI_N] = {
+    "Jogo", "Dados", "Util", "Ajuda", "Sair"
 };
-const char * const MENU_DESCRIPTIONS[MENU_OPTIONS_N] = {
+
+const char * const DISTRIBUI_DESCRIPTIONS[DISTRIBUI_N] = {
     "Iniciar o jogo",
     "Gerir a lista de pessoas",
     "Utilitarios diversos",
@@ -37,8 +36,11 @@ const char * const MENU_DESCRIPTIONS[MENU_OPTIONS_N] = {
     "Terminar o aplicativo"
 };
 
-void Iniciar();
-void Terminar();
+void Distribui();
+void distribui_ajuda();
+void distribui_default(int);
+
+void terminar();
 void splash();
 
 void Nimplementado(const char *);

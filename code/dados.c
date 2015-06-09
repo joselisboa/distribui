@@ -6,32 +6,24 @@
 // função principal
 No *Dados(No *lista){
     int opt;
-    char *nome = "Gestao de Dados";
     do {
         // cabeçalho
-        zenter_cls(nome);
-        opt = optionz(DADOS_OPTIONS, DADOS_OPTIONS_N);
-        switch(opt){
-        case 1:// Listar
-            dados_listar(lista);
-            break;
-        case 2:// Adicionar
-            lista = dados_adicionar(lista);
-            break;
-        case 3:// Remover
-            lista = dados_remover(lista);
-            break;
-        case 6:// Ajuda
-            zenter_cls(nome);
-            Info(DADOS_OPTIONS, DADOS_DESCRIPTIONS, DADOS_OPTIONS_N);
-            break;
+        zenter_cls(DADOS_NOME);
+        opt = optionz(DADOS_OPTIONS, DADOS_N);
+        switch(opt) {
+        case 1: dados_listar(lista);
+        break;
+        case 2: lista = dados_adicionar(lista);
+        break;
+        case 3: lista = dados_remover(lista);
+        break;
+        case 6: dados_ajuda();
+        break;
         case 7:// voltar
         case 0: return lista;
-        default:
-            zenter_cls(nome);
-            Nimplementado(DADOS_OPTIONS[opt-1]);
+        default: dados_default(opt);
         }
-    }while(TRUE);
+    } while(TRUE);
 
     // nunca chega aqui
     return lista;
@@ -42,7 +34,7 @@ void dados_listar(No *lista){
     No *no = lista;
     int i = 0;
 
-    zenter_cls("Gestao de Dados");
+    zenter_cls(DADOS_NOME);
     putz("[Listar Pessoas]", 11);
 
     if(lista == NULL) putz("[a lista NAO tem pessoas]", 12);
@@ -59,7 +51,7 @@ No *dados_adicionar(No *lista){
     int id = Id;
     Pessoa pessoa;
 
-    zenter_cls("Gestao de Dados");
+    zenter_cls(DADOS_NOME);
     putz("[Adicionar Pessoa]", 11);
 
     //fflush(stdin);
@@ -86,7 +78,7 @@ No *dados_adicionar(No *lista){
 No *dados_remover(No *lista){
     int id;
 
-    zenter_cls("Gestao de Dados");
+    zenter_cls(DADOS_NOME);
     putz("[Remover Pessoa]", 11);
     
     printf("Id: ");
@@ -125,6 +117,16 @@ int dados_guardar(No *lista){
 
     fclose(fd);
     return k;
+}
+
+void dados_ajuda(){
+    zenter_cls(DADOS_NOME);
+    Info(DADOS_OPTIONS, DADOS_DESCRIPTIONS, DADOS_N);
+}
+
+void dados_default(int opt){
+    zenter_cls(DADOS_NOME);
+    Nimplementado(DADOS_OPTIONS[opt-1]);
 }
 
 int guardaLista(No *lista){

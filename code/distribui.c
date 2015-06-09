@@ -6,38 +6,41 @@
 #include "zelib.c"
 //#include "jogo.c"
 #include "dados.c"
-#include "util.c"
+//#include "util.c"
 
 // Menu Principal
-void Iniciar() {
+void Distribui() {
     int opt;
     No *pessoas = Lista();
-    char *nome = "Menu Principal";
+
     do {
         // cabeçalho
-        zenter_cls(nome);
-        opt = optionz(MENU_OPTIONS, MENU_OPTIONS_N);
+        zenter_cls(DISTRIBUI_NOME);
+        opt = optionz(DISTRIBUI_OPTIONS, DISTRIBUI_N);
         switch(opt){
-            //case 1:// Jogo
-            //    pessoas = Jogo(pessoas);
-            //    break;
-            case 2:
-                pessoas = Dados(pessoas);
-                break;
-            case 3:// Util
-                Util();
-                break;
-            case 4:// Info
-                zenter_cls(nome);
-                Info(MENU_OPTIONS, MENU_DESCRIPTIONS, MENU_OPTIONS_N);
-                break;
+            //case 1: pessoas = Jogo(pessoas);
+            //break;
+            case 2: pessoas = Dados(pessoas);
+            break;
+            //case 3: Util();
+            //break;
+            case 4: distribui_ajuda();
+            break;
             case 5:// Sair
             case 0: return;
-            default:
-                zenter_cls(nome);
-                Nimplementado(MENU_OPTIONS[opt-1]);
+            default: distribui_default(opt);
         }
     } while(TRUE);
+}
+
+void distribui_ajuda() {
+    zenter_cls(DISTRIBUI_NOME);
+    Info(DISTRIBUI_OPTIONS, DISTRIBUI_DESCRIPTIONS, DISTRIBUI_N);
+}
+
+void distribui_default(int opt) {
+    zenter_cls(DISTRIBUI_NOME);
+    Nimplementado(DISTRIBUI_OPTIONS[opt-1]);
 }
 
 // informação inicial na consola
@@ -53,7 +56,7 @@ void splash(){
 }
 
 // termina a aplicação
-void Terminar(){
+void terminar(){
     // AFAZER: cleanup
     //halt("adeus");
     //splash();

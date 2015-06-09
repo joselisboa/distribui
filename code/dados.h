@@ -2,18 +2,16 @@
 
 #ifndef DADOS_H
 #define DADOS_H
+#define DADOS_NOME "Gestao da Lista de Pessoas"
+#define DADOS_N 7
 
-//------------
-// Menu Dados
-//------------
-// n items
-#define DADOS_OPTIONS_N 7
 // opções
-const char * const DADOS_OPTIONS[DADOS_OPTIONS_N] = {
+const char * const DADOS_OPTIONS[DADOS_N] = {
     "Listar", "Adicionar", "Remover", "Importar", "Exportar", "Ajuda", "voltar"
 };
+
 // descritivo das opções
-const char * const DADOS_DESCRIPTIONS[DADOS_OPTIONS_N] = {
+const char * const DADOS_DESCRIPTIONS[DADOS_N] = {
     "Lista as Pessoas na lista",
     "Adiciona uma Pessoa na lista",
     "Remove uma pessoa da lista pelo seu Id",
@@ -29,6 +27,8 @@ void dados_listar(No *);
 No *dados_adicionar(No *);
 No *dados_remover(No *);
 int dados_guardar(No *);
+void dados_ajuda();
+void dados_default(int);
 
 int guardaLista(No *);
 
