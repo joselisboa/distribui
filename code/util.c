@@ -35,7 +35,7 @@ void util_cores(){
     for (i=0; i< 32; i++){
         printz(i, "%02d| amostra de texto na cor %04x\n", i, i);
     }
-    pause("continuar");
+    pausa();
 }
 
 void util_caracteres(){
@@ -44,7 +44,7 @@ void util_caracteres(){
     for (i=0; i< 256; i++){
         printf("%03d| caractere '%c'\n", i, i);
     }
-    pause("continuar");
+    pausa();
 }
 
 void util_getch(){
@@ -100,5 +100,5 @@ void util_ajuda() {
 
 void util_default(int opt){
     zenter_cls(UTIL_NOME);
-    Nimplementado(UTIL_OPTIONS[opt-1]);
+    nao_implementado(UTIL_OPTIONS[opt-1]);
 }

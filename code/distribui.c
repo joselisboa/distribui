@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "distribui.h"
 
+// código
 #include "zelib.c"
 #include "jogo.c"
 #include "dados.c"
@@ -11,11 +12,13 @@
 // Menu Principal
 void Distribui() {
     int opt;
+    // lista de pessoas
     No *pessoas = Lista();
 
     do {
         // cabeçalho
         zenter_cls(DISTRIBUI_NOME);
+
         opt = optionz(DISTRIBUI_OPTIONS, DISTRIBUI_N);
         switch(opt){
             case 1: pessoas = Jogo(pessoas);
@@ -40,7 +43,7 @@ void distribui_ajuda() {
 
 void distribui_default(int opt) {
     zenter_cls(DISTRIBUI_NOME);
-    Nimplementado(DISTRIBUI_OPTIONS[opt-1]);
+    nao_implementado(DISTRIBUI_OPTIONS[opt-1]);
 }
 
 // informação inicial na consola
@@ -55,7 +58,7 @@ void splash(){
     system("cls");
 }
 
-// termina a aplicação
+// sai da aplicação
 void terminar(){
     // AFAZER: cleanup
     //halt("adeus");
@@ -64,9 +67,35 @@ void terminar(){
     die("Adeus");
 }
 
+// AFAZER: uma alternativa mais elegante
+void nao_implementado(const char *s){
+    printz(12, "[%s] NAO IMPLEMENTADO\n", s);
+    pausa();
+}
+
 //---------------------------------
 // Lista de nós com estrura Pessoa
 //---------------------------------
+
+// obtém uma lista de nós (com Pessoa) a partir de um ficheiro binário
+No *Lista(){
+    No *lista = NULL;
+    // se o ficheiro não existe devolver a lista (vazia)
+    if(!file_exists(PESSOAS_DAT)) return lista;
+    // Abrir o ficheiro binário para leitura
+    FILE *fd = fopen(PESSOAS_DAT, "rb");
+    if(fd == NULL)  printz(12, "Erro a abrir o ficheiro '%s'\n", PESSOAS_DAT);
+    else {
+        Pessoa pessoa;
+        // Enquanto obter pessoas (uma a uma)
+        while(fread(&pessoa, sizeof(pessoa), 1, fd) == 1)
+            lista = adicionaNo(pessoa, lista);
+        fclose(fd);
+    }
+
+    return lista;
+}
+
 // adiciona um nó (com Pessoa) numa lista de nós
 No *adicionaNo(Pessoa pessoa, No *lista){
     No *no = (No*) malloc(sizeof(No));
@@ -98,6 +127,7 @@ No *adicionaNo(Pessoa pessoa, No *lista){
 
     return lista;
 }
+
 // remove um nó (com Pessoa) duma lista de nós
 No *removeNo(int *id, No *lista){
     // lista vazia
@@ -125,34 +155,10 @@ No *removeNo(int *id, No *lista){
 
     return lista;
 }
+
 // liberta a memória ocupada por um nó
 No *libertaNo(No *no){
     zeFree(no->pessoa);
     if(no->pessoa == NULL) zeFree(no);
     return no;
-}
-// obtém uma lista de nós (com Pessoa) a partir de um ficheiro binário
-No *Lista(){
-    No *lista = NULL;
-    // se o ficheiro não existe devolver a lista (vazia)
-    if(!file_exists(PESSOAS_DAT)) return lista;
-    // Abrir o ficheiro binário para leitura
-    FILE *fd = fopen(PESSOAS_DAT, "rb");
-    if(fd == NULL)  printz(12, "Erro a abrir o ficheiro '%s'\n", PESSOAS_DAT);
-    else {
-        Pessoa pessoa;
-        // Enquanto obter pessoas (uma a uma)
-        while(fread(&pessoa, sizeof(pessoa), 1, fd) == 1)
-            lista = adicionaNo(pessoa, lista);
-        fclose(fd);
-    }
-
-    return lista;
-}
-
-//  "não implementado"
-void Nimplementado(const char *option){
-    printz(11, "[%s]\n", option);
-    putz("NAO IMPLEMENTADO", 12);
-    pausa();
 }

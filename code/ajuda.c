@@ -11,10 +11,10 @@ void Ajuda(){
         zenter_cls(AJUDA_NOME);
         opt = optionz(AJUDA_OPTIONS, AJUDA_N);
         switch(opt) {
-        case 1: ajuda_regras();
-        break;
-        case 2: ajuda_comandos();
-        break;
+        //case 1: ajuda_regras();
+        //break;
+        //case 2: ajuda_comandos();
+        //break;
         case 3: ajuda_ajuda();
         break;
         case 4:// Voltar
@@ -26,14 +26,10 @@ void Ajuda(){
 
 // mostra as regras do jogo
 void ajuda_regras(){
-    zenter_cls(AJUDA_NOME);
-    Nimplementado("Regras");
 }
 
 // mostra os comandos do jogo
 void ajuda_comandos(){
-    zenter_cls(AJUDA_NOME);
-    Nimplementado("Comandos");
 }
 
 void ajuda_ajuda() {
@@ -44,5 +40,5 @@ void ajuda_ajuda() {
 // trata opçoes desconhecidas
 void ajuda_default(int opt){
     zenter_cls(AJUDA_NOME);
-    Nimplementado(AJUDA_OPTIONS[opt-1]);
+    nao_implementado(AJUDA_OPTIONS[opt-1]);
 }

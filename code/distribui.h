@@ -40,10 +40,9 @@ void Distribui();
 void distribui_ajuda();
 void distribui_default(int);
 
+void nao_implementado(const char *);
 void terminar();
 void splash();
-
-void Nimplementado(const char *);
 
 No *Lista();
 No *libertaNo(No *);

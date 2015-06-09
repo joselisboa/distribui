@@ -32,18 +32,17 @@ No *Jogo(No *lista){
 
 void jogo_jogar(){
     zenter_cls(JOGO_NOME);
-    Nimplementado("Jogar");
-    pausa();
+    nao_implementado("Jogar");
 }
 
 void jogo_recuperar(){
     zenter_cls(JOGO_NOME);
-    Nimplementado("Recuperar");
+    nao_implementado("Recuperar");
 }
 
 void jogo_salvar(){
     zenter_cls(JOGO_NOME);
-    Nimplementado("Salvar");
+    nao_implementado("Salvar");
 }
 
 void jogo_ajuda() {
@@ -53,5 +52,5 @@ void jogo_ajuda() {
 
 void jogo_default(int opt){
     zenter_cls(JOGO_NOME);
-    Nimplementado(JOGO_OPTIONS[opt-1]);
+    nao_implementado(JOGO_OPTIONS[opt-1]);
 }

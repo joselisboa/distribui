@@ -24,7 +24,7 @@ void Testes(){
 void testes_putz(){
     zenter_cls(TESTES_NOME);
     putz("putz(string, BLUE);", BLUE);
-    pause("continuar");
+    pausa();
 }
 
 void testes_printz(){
@@ -33,11 +33,10 @@ void testes_printz(){
     zenter_cls(TESTES_NOME);
     printz(MAGENTA, "Pessoa #%d: %s, %d\n", pessoa1.id, pessoa1.nome, pessoa1.idade);
     printz(CYAN, "Pessoa #%d: %s, %d\n", pessoa2.id, pessoa2.nome, pessoa2.idade);
-
-    pause("continuar");
+    pausa();
 }
 
 void testes_default(int opt){
     zenter_cls(TESTES_NOME);
-    Nimplementado(TESTES_OPTIONS[opt-1]);
+    nao_implementado(TESTES_OPTIONS[opt-1]);
 }

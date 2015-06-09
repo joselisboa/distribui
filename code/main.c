@@ -4,6 +4,7 @@ int main(int argc, char *argv[]){
 
     splash();
 
+    // início
     Distribui();
 
     terminar();

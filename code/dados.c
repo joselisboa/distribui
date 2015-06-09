@@ -126,7 +126,7 @@ void dados_ajuda(){
 
 void dados_default(int opt){
     zenter_cls(DADOS_NOME);
-    Nimplementado(DADOS_OPTIONS[opt-1]);
+    nao_implementado(DADOS_OPTIONS[opt-1]);
 }
 
 int guardaLista(No *lista){
