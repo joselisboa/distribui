@@ -1,17 +1,24 @@
 #ifndef UTIL_H
 #define UTIL_H
+#define UTIL_NOME "Utilitarios"
+#define UTIL_N 5
 
-//------------------
-// Menu Utilitários
-//------------------
-#define UTIL_OPTIONS_N 4
-const char * const UTIL_OPTIONS[UTIL_OPTIONS_N] = {
-    "Cores", "Caracteres", "Testes", "Voltar"
+const char * const UTIL_OPTIONS[UTIL_N] = {
+    "Cores", "Caracteres", "Teclas", "Testes", "Voltar"
+};
+
+const char * const UTIL_DESCRIPTIONS[UTIL_N] = {
+    "Mostra os codigos das cores",
+    "Mostra os codigos dos caracteres",
+    "Mostra os codigos das teclas",
+    "Entra no menu Testes",
+    "Volta ao menu anterior"
 };
 
 void Util();
-void _cores();
-void _caracteres();
+void util_cores();
+void util_caracteres();
+void util_getch();
+void util_default(int);
 
 #endif // UTIL_H
-
