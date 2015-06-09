@@ -6,10 +6,13 @@
 //------------
 // Menu Dados
 //------------
+// n items
 #define DADOS_OPTIONS_N 5
+// opções
 const char * const DADOS_OPTIONS[DADOS_OPTIONS_N] = {
-    "Listar", "Adicionar", "Remover", "Info", "voltar"
+    "Listar", "Adicionar", "Remover", "Ajuda", "voltar"
 };
+// descritivo das opções
 const char * const DADOS_DESCRIPTIONS[DADOS_OPTIONS_N] = {
     "Lista as Pessoas na lista",
     "Adiciona uma Pessoa na lista",
@@ -19,10 +22,11 @@ const char * const DADOS_DESCRIPTIONS[DADOS_OPTIONS_N] = {
 };
 
 Pessoa *Dados(Pessoa *);
+Pessoa *dados_remover(int, Pessoa *);
+Pessoa *dados_adicionar(Pessoa *);
+int dados_guardar(Pessoa *);
+Pessoa *_remover(Pessoa *);
 Pessoa *_adicionar(Pessoa *);
-Pessoa *_remover(int, Pessoa *);
-int _guardar(Pessoa *);
 void _listar(Pessoa *);
 
 #endif // DADOS_H
-

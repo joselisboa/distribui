@@ -6,51 +6,31 @@
 // função principal
 Pessoa *Dados(Pessoa *pessoas){
     int opt, id;
-    char *nome = "Gestao de Dados";
+    
     do {
         // cabeçalho
-        zenter_cls(nome);
+        zenter_cls("Gestao de Dados");
+        opt = optionz(DADOS_OPTIONS, DADOS_OPTIONS_N);
 
-        switch(opt = optionz(DADOS_OPTIONS, DADOS_OPTIONS_N)){
+        switch(opt){
         case 1: // Listar
-            zenter_cls(nome);
             _listar(pessoas);
             break;
         case 2: // Adicionar
-            // AFAZER: mover para uma função
-            zenter_cls(nome);
-            printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
-            id = Id;
             pessoas = _adicionar(pessoas);
-            if(Id > id) {
-                putz("pessoa adicionada com sucesso", 2);
-                if(_guardar(pessoas) > 0) putz("lista atualizada", 2);
-                else putz("lista nao atualizada", 12);
-            }
-            pausa();
             break;
         case 3:// Remover
-            zenter_cls(nome);
-            printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
-            printf("Id: ");
-            scanf("%d", &id);
-            if(id > 0) {
-                pessoas = _remover(id, pessoas);
-                if(_guardar(pessoas)) putz("lista atualizada", 2);
-                else putz("lista nao atualizada", 12);
-            }
-            else putz("Id invalido", 12);
-            pausa();
+            
+            pessoas = _remover(pessoas);
             break;
-        case 4:
-            zenter_cls("Menu Principal");
-            //putz("[Info]", 13);
-            _info(DADOS_OPTIONS, DADOS_DESCRIPTIONS, DADOS_OPTIONS_N);
+        case 4:// Ajuda
+            zenter_cls("Gestao de Dados");
+            Info(DADOS_OPTIONS, DADOS_DESCRIPTIONS, DADOS_OPTIONS_N);
             break;
         case 5:// voltar
         case 0: return pessoas;
         default:
-            zenter_cls(nome);
+            zenter_cls("Gestao de Dados");
             Nimplementado(DADOS_OPTIONS[opt-1]);
         }
     } while(TRUE);
@@ -59,12 +39,71 @@ Pessoa *Dados(Pessoa *pessoas){
     return pessoas;
 }
 
+// lista as pessoas na lista
+void _listar(Pessoa *pessoas){
+    Pessoa *aux = pessoas;
+    int i = 0;
+
+    zenter_cls("Gestao de Dados");
+    putz("[Listar Pessoas]", 11);
+
+    if(pessoas == NULL) putz("[a lista NAO tem pessoas]", 12);
+
+    while(aux != NULL){
+        printz(15, "%d| #%d: %s, %d\n", ++i, aux->id, aux->nome, aux->idade);
+        aux = aux->prox;
+    }
+
+    pausa();
+}
+
+// Adicionar pessoa
+Pessoa *_adicionar(Pessoa *pessoas){
+    int id = Id;
+    
+    zenter_cls("Gestao de Dados");
+    printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
+    
+    pessoas = dados_adicionar(pessoas);
+    if(Id > id) {
+        putz("[pessoa adicionada]", 2);
+        if(_guardar(pessoas) > 0) putz("[lista atualizada]", 2);
+        else putz("[lista NAO atualizada]", 12);
+    }
+    pausa();
+    return pessoas;
+}
+
+// Remover pessoa
+Pessoa *_remover(Pessoa *pessoas){
+    int id, n = Pessoas_N;
+    
+    zenter_cls("Gestao de Dados");
+    putz("[Remover Pessoa]", 11);
+    
+    printf("Id: ");
+    scanf("%d", &id);
+    if(id > 0) {
+        pessoas = dados_remover(id, pessoas);
+        if(Pessoas_N < n) {
+            printz(2, "[pessoa com id %d removida]\n", id);
+            if(_guardar(pessoas) > 0) putz("[lista atualizada]", 2);
+            else putz("[lista NAO atualizada]", 12);
+        }
+        else putz("[pessoa NAO encontrada]", 12);
+    }
+    else putz("[ID invalido]", 12);
+    
+    pausa();
+    return pessoas;
+}
+
 // guarda a lista de pessoas no ficheiro
-int _guardar(Pessoa *lista){
+int dados_guardar(Pessoa *lista){
     FILE *fd = fopen(PESSOAS_DAT, "wb");
 
     if(fd == NULL){
-        printf("Erro de acesso ao ficheiro '%s'\n", PESSOAS_DAT);
+        printf("[Erro de acesso ao ficheiro '%s']\n", PESSOAS_DAT);
         return -1;
     }
 
@@ -83,7 +122,7 @@ int _guardar(Pessoa *lista){
 }
 
 // adiciona uma pessoa à lista de pessoas
-Pessoa *_adicionar(Pessoa *pessoas){
+Pessoa *dados_adicionar(Pessoa *pessoas){
     Pessoa *aux = NULL;
     Pessoa *novo = (Pessoa*) malloc(sizeof(Pessoa));
 
@@ -102,35 +141,24 @@ Pessoa *_adicionar(Pessoa *pessoas){
     novo->id = ++Id;
     novo->prox = NULL;
 
+    // primeira pessoa na lista
     if(pessoas == NULL) pessoas = novo;
     else {
         aux = pessoas;
+        // avançar até à última pessoa na lista
         while(aux->prox != NULL) aux = aux->prox;
+        // adicionar a pessoa no fim
         aux->prox = novo;
     }
+
+    // incrementar o contador de pessoas
+    Pessoas_N++;
 
     return pessoas;
 }
 
-// lista as pessoas na lista
-void _listar(Pessoa *pessoas){
-    Pessoa *aux = pessoas;
-    int i = 0;
-
-    putz("[Listar Pessoas]", 11);
-
-    if(pessoas == NULL) putz("a lista nao tem pessoas", 12);
-
-    while(aux != NULL){
-        printz(15, "%d| #%d: %s, %d\n", ++i, aux->id, aux->nome, aux->idade);
-        aux = aux->prox;
-    }
-
-    pause("premir qualquer tecla para continuas");
-}
-
 // remove pessoa pelo id (permite haver mais que uma pessoa com o mesmo nome)
-Pessoa *_remover(int id, Pessoa *lista){
+Pessoa *dados_remover(int id, Pessoa *lista){
     Pessoa *aux, *pessoa = lista;
 
     // lista vazia
@@ -141,6 +169,7 @@ Pessoa *_remover(int id, Pessoa *lista){
         aux = pessoa;
         lista = pessoa->prox;
         zeFree(aux);
+        Pessoas_N--;
         return lista;
     }
 
@@ -150,11 +179,11 @@ Pessoa *_remover(int id, Pessoa *lista){
             aux = pessoa->prox;
             pessoa->prox = aux->prox;
             zeFree(aux);
-            break;
+            Pessoas_N--;
+            return lista;
         }
         pessoa = pessoa->prox;
     }
 
     return lista;
 }
-
