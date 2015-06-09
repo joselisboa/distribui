@@ -1,37 +1,48 @@
 #include <stdio.h>
 #include "distribui.h"
 #include "zelib.h"
+#include "ajuda.h"
 
+// Menu Ajuda
 void Ajuda(){
     int opt;
-    char *nome = "Ajuda";
     do {
-        // cabe?lho
-        zenter_cls(nome);
-
-        switch(opt = optionz(AJUDA_OPTIONS, AJUDA_OPTIONS_N)){
-        case 1: // Regras
-            zenter_cls(nome);
-            _regras();
-            break;
-        case 2: // Comandos
-            zenter_cls(nome);
-            _comandos();
-            break;
-        case 3:// Voltar
+        // cabeçalho
+        zenter_cls(AJUDA_NOME);
+        opt = optionz(AJUDA_OPTIONS, AJUDA_N);
+        switch(opt) {
+        case 1: ajuda_regras();
+        break;
+        case 2: ajuda_comandos();
+        break;
+        case 3: ajuda_ajuda();
+        break;
+        case 4:// Voltar
         case 0: return;
-        default:
-            zenter_cls(nome);
-            Nimplementado(AJUDA_OPTIONS[opt-1]);
+        default: ajuda_default(opt);
         }
-
     } while(TRUE);
 }
 
-void _regras(){
+// mostra as regras do jogo
+void ajuda_regras(){
+    zenter_cls(AJUDA_NOME);
     Nimplementado("Regras");
 }
 
-void _comandos(){
+// mostra os comandos do jogo
+void ajuda_comandos(){
+    zenter_cls(AJUDA_NOME);
     Nimplementado("Comandos");
+}
+
+void ajuda_ajuda() {
+    zenter_cls(AJUDA_NOME);
+    Info(AJUDA_OPTIONS, AJUDA_DESCRIPTIONS, AJUDA_N);
+}
+
+// trata opçoes desconhecidas
+void ajuda_default(int opt){
+    zenter_cls(AJUDA_NOME);
+    Nimplementado(AJUDA_OPTIONS[opt-1]);
 }
