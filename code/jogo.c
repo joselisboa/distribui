@@ -1,59 +1,56 @@
 #include <stdio.h>
 #include "distribui.h"
 #include "zelib.h"
-#include "ajuda.h"
+#include "ajuda.c"
 
-Jogador criar_jogador(Pessoa pessoa){
-    Jogador jogador;
-    return jogador;
-}
-
-Pessoa *Jogo(Pessoa *pessoas){
+No *Jogo(No *lista){
     int opt;
-    char *nome = "Jogo";
     do {
-        // cabe?lho
-        zenter_cls(nome);
-
-        switch(opt = optionz(JOGO_OPTIONS, JOGO_OPTIONS_N)){
-        case 1: // Jogar
-            zenter_cls(nome);
-            _jogar();
-            break;
-        case 2: // Recuperar
-            zenter_cls(nome);
-            _recuperar();
-            break;
-        case 3: // Guardar
-            zenter_cls(nome);
-            _salvar();
-            break;
-        case 4: // Ajuda
-            Ajuda();
-            break;
+        // cabeçalho
+        zenter_cls(JOGO_NOME);
+        opt = optionz(JOGO_OPTIONS, JOGO_N);
+        switch(opt){
+        case 1: jogo_jogar();
+        break;
+        case 2: jogo_recuperar();
+        break;
+        case 3: jogo_salvar();
+        break;
+        case 4: Ajuda();
+        break;
+        case 5: jogo_ajuda();a
+        break;
         case 5:// Voltar
-        case 0: return pessoas;
+        case 0: return lista;
         default:
-            zenter_cls(nome);
-            Nimplementado(JOGO_OPTIONS[opt-1]);
+            jogo_default(opt);
         }
 
     } while(TRUE);
 }
 
-void _jogar(){
-    //Nimplementado("Jogar");
-
+void jogo_jogar(){
+    zenter_cls(JOGO_NOME);
+    Nimplementado("Jogar");
     pausa();
 }
 
-void _recuperar(){
+void jogo_recuperar(){
+    zenter_cls(JOGO_NOME);
     Nimplementado("Recuperar");
 }
 
-void _salvar(){
+void jogo_salvar(){
+    zenter_cls(JOGO_NOME);
     Nimplementado("Salvar");
 }
 
+void jogo_ajuda() {
+    zenter_cls(JOGO_NOME);
+    Info(JOGO_OPTIONS, JOGO_DESCRIPTIONS, JOGO_N);
+}
 
-//void _inserir(){}
+void jogo_default(int opt){
+    zenter_cls(JOGO_NOME);
+    Nimplementado(JOGO_OPTIONS[opt-1]);
+}
