@@ -19,7 +19,9 @@ void Util(){
         break;
         case 4: Testes();
         break;
-        case 5: // Voltar
+        case 5: util_ajuda();
+        break;
+        case 6: // Voltar
         case 0: return;
         default:
             util_default(opt);
@@ -89,6 +91,11 @@ void util_getch(){
 
         if(c == 'X' || c == 'x') break;
     } while(TRUE);
+}
+
+void util_ajuda() {
+    zenter_cls(UTIL_NOME);
+    Info(UTIL_OPTIONS, UTIL_DESCRIPTIONS, UTIL_N);
 }
 
 void util_default(int opt){
