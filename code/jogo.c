@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "distribui.h"
 #include "zelib.h"
+#include "jogo.h"
 #include "ajuda.c"
 
 No *Jogo(No *lista){
@@ -18,9 +19,9 @@ No *Jogo(No *lista){
         break;
         case 4: Ajuda();
         break;
-        case 5: jogo_ajuda();a
+        case 5: jogo_ajuda();
         break;
-        case 5:// Voltar
+        case 6:// Voltar
         case 0: return lista;
         default:
             jogo_default(opt);

@@ -3,7 +3,7 @@
 #ifndef JOGO_H
 #define JOGO_H
 #define JOGO_NOME "Jogo"
-#define JOGO_N 5
+#define JOGO_N 6
 
 const char * const JOGO_OPTIONS[JOGO_N] = {
     "Jogar", "Recuperar", "Salvar", "Regras", "Ajuda", "Voltar"
