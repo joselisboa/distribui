@@ -1,12 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "zelib.c" 
+//#include <stdio.h>
+//#include <stdlib.h>
 #include "distribui.c"
-#include "dados.c"
-//#include "util.c"
-//#include "testes.c"
-//#include "jogo.c"
-//#include "ajuda.c"
 
 int main(int argc, char *argv[]){
 
