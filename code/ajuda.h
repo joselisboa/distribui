@@ -3,11 +3,11 @@
 #define AJUDA_NOME "Ajuda"
 #define AJUDA_N 4
 
-const char * const AJUDA_OPTIONS[AJUDA_OPTIONS_N] = {
+const char * const AJUDA_OPTIONS[AJUDA_N] = {
     "Regras", "Comandos", "Ajuda", "voltar"
 };
 
-const char * const AJUDA_DESCRIPTIONS[DADOS_OPTIONS_N] = {
+const char * const AJUDA_DESCRIPTIONS[AJUDA_N] = {
     "As Regras do Jogo",
     "Lista de comandos para jogar",
     "Mostra esta lista",
