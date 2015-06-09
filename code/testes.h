@@ -1,18 +1,22 @@
 #ifndef TESTES_H
 #define TESTES_H
+#define TESTES_NOME "Testes"
+#define TESTES_N 3
 
-//-------------
-// Menu Testes
-//-------------
-#define TESTES_OPTIONS_N 4
-const char * const TESTES_OPTIONS[TESTES_OPTIONS_N] = {
-    "Putz", "Printz", "Getch", "Voltar"
+const char * const TESTES_OPTIONS[TESTES_N] = {
+    "Putz", "Printz", "Voltar"
+};
+
+const char * const TESTES_DESCRIPTIONS[TESTES_N] = {
+    "Testa a funcao putz(char*, int)",
+    "Testa a funcao printz(int, char*, ...)",
+    "Volta ao menu anterior"
 };
 
 void Testes();
-void _putz();
-void _printz();
-void _getch();
+void testes_putz();
+void testes_printz();
+void testes_default(int);
 
 #endif // TESTES_H
 
