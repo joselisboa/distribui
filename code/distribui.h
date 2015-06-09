@@ -5,26 +5,22 @@
 #define PESSOAS_TXT "pessoas.txt"
 
 int Id = 0;
-int Pessoas_N = 0;
+int Pessoas = 0;
 
 typedef struct _pessoa {
     int id;
     char nome[100];
     unsigned int idade;
-    struct _pessoa *prox;
 } Pessoa;
-
-
-typedef struct _no No;
-typedef No* pNo;
-struct _no {
-	Pessoa *pessoa;
-	Pessoa *prox;
-	//Pessoa Pprev;
-};
 
 typedef Pessoa* pPessoa;
 
+typedef struct _no No;
+//typedef No* pNo;
+struct _no {
+    Pessoa *pessoa;
+    No *prox;
+};
 
 //----------------
 // Menu Principal
@@ -45,10 +41,11 @@ void Iniciar();
 void Terminar();
 void splash();
 
-Pessoa criar_pessoa(char *, int);
-Pessoa *Pessoas();
-void Info(const char * const *, const char * const *, const int);
 void Nimplementado(const char *);
 
-#endif
+No *Lista();
+No *libertaNo(No *);
+No *adicionaNo(Pessoa, No *);
+No *removeNo(int *, No *);
 
+#endif

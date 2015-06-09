@@ -49,6 +49,6 @@ char *substr(char *, int, int);
 char *caps(char []);
 
 int file_exists(char []);
+void Info(const char * const *, const char * const *, const int);
 
 #endif
-

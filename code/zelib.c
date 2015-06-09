@@ -100,7 +100,7 @@ void _zeFree(void **pp){
 }
 
 void die(char *msg){
-    puts(msg);
+    printf("%s", msg);
     exit(EXIT_FAILURE);
 }
 
@@ -237,3 +237,11 @@ int file_exists(char fname[]){
     return 0;
 }
 
+void Info(const char * const *keys, const char * const *values, const int n){
+    int i;
+    for(i=0; i < n; i++) {
+        printz(11, "[%-5s] ", keys[i]);
+        printz(7, "%s\n", values[i]);
+    }
+    pausa();
+}

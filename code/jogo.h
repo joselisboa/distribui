@@ -27,7 +27,7 @@ typedef struct _grupo {
 	No *prox;
 } Grupo;
 // contador de grupos
-int Grupos = 0;
+int Grupos_N = 0;
 // grupos
 Grupo *grupos = NULL;
 

@@ -7,26 +7,29 @@
 // Menu Dados
 //------------
 // n items
-#define DADOS_OPTIONS_N 5
+#define DADOS_OPTIONS_N 7
 // opções
 const char * const DADOS_OPTIONS[DADOS_OPTIONS_N] = {
-    "Listar", "Adicionar", "Remover", "Ajuda", "voltar"
+    "Listar", "Adicionar", "Remover", "Importar", "Exportar", "Ajuda", "voltar"
 };
 // descritivo das opções
 const char * const DADOS_DESCRIPTIONS[DADOS_OPTIONS_N] = {
     "Lista as Pessoas na lista",
     "Adiciona uma Pessoa na lista",
     "Remove uma pessoa da lista pelo seu Id",
+    "Importa pessoas num ficheiro de texto",
+    "Exporta as pessoas para um ficheiro de texto",
     "Mostra esta lista",
     "Volta ao menu anterior"
 };
 
-Pessoa *Dados(Pessoa *);
-Pessoa *dados_remover(int, Pessoa *);
-Pessoa *dados_adicionar(Pessoa *);
-int dados_guardar(Pessoa *);
-Pessoa *_remover(Pessoa *);
-Pessoa *_adicionar(Pessoa *);
-void _listar(Pessoa *);
+No *Dados(No *);
+
+void dados_listar(No *);
+No *dados_adicionar(No *);
+No *dados_remover(No *);
+int dados_guardar(No *);
+
+int guardaLista(No *);
 
 #endif // DADOS_H

@@ -4,102 +4,111 @@
 #include "zelib.h"
 
 // função principal
-Pessoa *Dados(Pessoa *pessoas){
-    int opt, id;
-    
+No *Dados(No *lista){
+    int opt;
+    char *nome = "Gestao de Dados";
     do {
         // cabeçalho
-        zenter_cls("Gestao de Dados");
+        zenter_cls(nome);
         opt = optionz(DADOS_OPTIONS, DADOS_OPTIONS_N);
-
         switch(opt){
-        case 1: // Listar
-            _listar(pessoas);
+        case 1:// Listar
+            dados_listar(lista);
             break;
-        case 2: // Adicionar
-            pessoas = _adicionar(pessoas);
+        case 2:// Adicionar
+            lista = dados_adicionar(lista);
             break;
         case 3:// Remover
-            
-            pessoas = _remover(pessoas);
+            lista = dados_remover(lista);
             break;
-        case 4:// Ajuda
-            zenter_cls("Gestao de Dados");
+        case 6:// Ajuda
+            zenter_cls(nome);
             Info(DADOS_OPTIONS, DADOS_DESCRIPTIONS, DADOS_OPTIONS_N);
             break;
-        case 5:// voltar
-        case 0: return pessoas;
+        case 7:// voltar
+        case 0: return lista;
         default:
-            zenter_cls("Gestao de Dados");
+            zenter_cls(nome);
             Nimplementado(DADOS_OPTIONS[opt-1]);
         }
-    } while(TRUE);
+    }while(TRUE);
 
     // nunca chega aqui
-    return pessoas;
+    return lista;
 }
 
 // lista as pessoas na lista
-void _listar(Pessoa *pessoas){
-    Pessoa *aux = pessoas;
+void dados_listar(No *lista){
+    No *no = lista;
     int i = 0;
 
     zenter_cls("Gestao de Dados");
     putz("[Listar Pessoas]", 11);
 
-    if(pessoas == NULL) putz("[a lista NAO tem pessoas]", 12);
-
-    while(aux != NULL){
-        printz(15, "%d| #%d: %s, %d\n", ++i, aux->id, aux->nome, aux->idade);
-        aux = aux->prox;
+    if(lista == NULL) putz("[a lista NAO tem pessoas]", 12);
+    else while(no != NULL){
+        printz(15, "#%d: %s, %d\n", no->pessoa->id, no->pessoa->nome, no->pessoa->idade);
+        no = no->prox;
     }
 
     pausa();
 }
 
 // Adicionar pessoa
-Pessoa *_adicionar(Pessoa *pessoas){
+No *dados_adicionar(No *lista){
     int id = Id;
-    
+    Pessoa pessoa;
+
     zenter_cls("Gestao de Dados");
-    printz(11, "[%s Pessoa]\n", DADOS_OPTIONS[opt-1]);
-    
-    pessoas = dados_adicionar(pessoas);
+    putz("[Adicionar Pessoa]", 11);
+
+    //fflush(stdin);
+    printf("Nome: ");
+    scanf(" %[^\n]", pessoa.nome);
+    printf("Idade: ");
+    scanf(" %d", &pessoa.idade);
+    fflush(stdin);
+    pessoa.id = ++Id;
+
+    lista = adicionaNo(pessoa, lista);
+
     if(Id > id) {
+        Pessoas++;
         putz("[pessoa adicionada]", 2);
-        if(_guardar(pessoas) > 0) putz("[lista atualizada]", 2);
+        if(guardaLista(lista) > 0) putz("[lista atualizada]", 2);
         else putz("[lista NAO atualizada]", 12);
     }
     pausa();
-    return pessoas;
+    return lista;
 }
 
 // Remover pessoa
-Pessoa *_remover(Pessoa *pessoas){
-    int id, n = Pessoas_N;
-    
+No *dados_remover(No *lista){
+    int id;
+
     zenter_cls("Gestao de Dados");
     putz("[Remover Pessoa]", 11);
     
     printf("Id: ");
     scanf("%d", &id);
     if(id > 0) {
-        pessoas = dados_remover(id, pessoas);
-        if(Pessoas_N < n) {
-            printz(2, "[pessoa com id %d removida]\n", id);
-            if(_guardar(pessoas) > 0) putz("[lista atualizada]", 2);
+        lista = removeNo(&id, lista);
+        if(id == 0) {
+            Pessoas--;
+            putz("[pessoa removida]", 2);
+            if(guardaLista(lista) > 0) putz("[lista atualizada]", 2);
             else putz("[lista NAO atualizada]", 12);
         }
         else putz("[pessoa NAO encontrada]", 12);
     }
     else putz("[ID invalido]", 12);
-    
+
     pausa();
-    return pessoas;
+    return lista;
 }
 
 // guarda a lista de pessoas no ficheiro
-int dados_guardar(Pessoa *lista){
+int dados_guardar(No *lista){
     FILE *fd = fopen(PESSOAS_DAT, "wb");
 
     if(fd == NULL){
@@ -108,10 +117,31 @@ int dados_guardar(Pessoa *lista){
     }
 
     int k = 0;
-    Pessoa *pessoa = lista;
-    while(pessoa != NULL) {
+    No *no = lista;
+    while(no != NULL) {
+        if(fwrite(no->pessoa, sizeof(Pessoa), 1, fd) == 1) k++;
+        no = no->prox;
+    }
+
+    fclose(fd);
+    return k;
+}
+
+int guardaLista(No *lista){
+    FILE *fd = fopen(PESSOAS_DAT, "wb");
+
+    if(fd == NULL){
+        printf("[Erro de acesso ao ficheiro '%s']\n", PESSOAS_DAT);
+        return -1;
+    }
+
+    int k = 0;
+    No *no = lista;
+    Pessoa *pessoa;
+    while(no != NULL) {
+        pessoa = no->pessoa;
         fwrite(pessoa, sizeof(Pessoa), 1, fd);
-        pessoa = pessoa->prox;
+        no = no->prox;
 
         // AFAZER: verificar se fwrite tem sucesso antes de incrementar
         k++;
@@ -119,71 +149,4 @@ int dados_guardar(Pessoa *lista){
 
     fclose(fd);
     return k;
-}
-
-// adiciona uma pessoa à lista de pessoas
-Pessoa *dados_adicionar(Pessoa *pessoas){
-    Pessoa *aux = NULL;
-    Pessoa *novo = (Pessoa*) malloc(sizeof(Pessoa));
-
-    if(novo == NULL) {
-        putz("ERRO a alocar memoria para Pessoa", 12);
-        return NULL;
-    }
-
-    //fflush(stdin);
-
-    printf("Nome: ");
-    scanf(" %[^\n]", novo->nome);
-    printf("Idade: ");
-    scanf(" %d", &novo->idade);
-    fflush(stdin);
-    novo->id = ++Id;
-    novo->prox = NULL;
-
-    // primeira pessoa na lista
-    if(pessoas == NULL) pessoas = novo;
-    else {
-        aux = pessoas;
-        // avançar até à última pessoa na lista
-        while(aux->prox != NULL) aux = aux->prox;
-        // adicionar a pessoa no fim
-        aux->prox = novo;
-    }
-
-    // incrementar o contador de pessoas
-    Pessoas_N++;
-
-    return pessoas;
-}
-
-// remove pessoa pelo id (permite haver mais que uma pessoa com o mesmo nome)
-Pessoa *dados_remover(int id, Pessoa *lista){
-    Pessoa *aux, *pessoa = lista;
-
-    // lista vazia
-    if(lista == NULL) return NULL;
-
-    // é a primeira pessoa
-    if(pessoa->id == id) {
-        aux = pessoa;
-        lista = pessoa->prox;
-        zeFree(aux);
-        Pessoas_N--;
-        return lista;
-    }
-
-    // pessoas seguintes
-    while(pessoa->prox != NULL){
-        if(pessoa->prox->id == id){
-            aux = pessoa->prox;
-            pessoa->prox = aux->prox;
-            zeFree(aux);
-            Pessoas_N--;
-            return lista;
-        }
-        pessoa = pessoa->prox;
-    }
-
-    return lista;
 }
