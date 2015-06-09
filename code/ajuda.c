@@ -35,4 +35,3 @@ void _regras(){
 void _comandos(){
     Nimplementado("Comandos");
 }
-
