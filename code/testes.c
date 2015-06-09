@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "distribui.h"
 #include "zelib.h"
+#include "testes.h"
 
 void Testes(){
     int opt;
@@ -37,8 +38,8 @@ void _putz(){
 }
 
 void _printz(){
-    Pessoa pessoa1 = { ++Id, "Ze", 49, NULL };
-    Pessoa pessoa2 = { ++Id, "Maria", 31, NULL };
+    Pessoa pessoa1 = { ++Id, "Ze", 49 };
+    Pessoa pessoa2 = { ++Id, "Maria", 31 };
 
     printz(MAGENTA, "Pessoa #%d: %s, %d\n", pessoa1.id, pessoa1.nome, pessoa1.idade);
     printz(CYAN, "Pessoa #%d: %s, %d\n", pessoa2.id, pessoa2.nome, pessoa2.idade);
