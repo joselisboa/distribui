@@ -29,6 +29,7 @@ typedef enum _cores {
     WHITE// = FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE
 } Cores;
 
+int randz(int, int);
 int option(const char * const [], int);
 int optionz(const char * const [], int);
 void zenter(char *);

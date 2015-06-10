@@ -5,6 +5,10 @@
 #include <windows.h>   // WinApi header
 #include "zelib.h"
 
+int randz(int min, int max){
+    return min + rand() % (max - min + 1);
+}
+
 int option(const char * const options[], int n){
     int i, escolha = 0;
 
