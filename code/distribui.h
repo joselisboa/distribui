@@ -50,4 +50,8 @@ No *removeNo(int *, No *);
 No *libertaNo(No *);
 No *libertaLista(No *);
 
+No *alocaNo(Pessoa *);
+Pessoa *alocaPessoa(Pessoa);
+Pessoa *obtemPessoa(int, No *);
+
 #endif

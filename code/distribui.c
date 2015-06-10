@@ -179,3 +179,37 @@ No *libertaLista(No *lista){
 
     return lista;
 }
+
+No *alocaNo(Pessoa *pessoa){
+    No *no = (No*) malloc(sizeof(No));
+    if(no == NULL) {
+        puts("ERRO a alocar memoria para No\n");
+        return NULL;
+    }
+    no->prox = NULL;
+    no->pessoa = pessoa;
+
+    return no;
+}
+
+Pessoa *alocaPessoa(Pessoa pessoa) {
+    Pessoa *p = (Pessoa*) malloc(sizeof(Pessoa));
+    if(p == NULL) {
+        puts("ERRO a alocar memoria para Pessoa\n");
+        return NULL;
+    }
+
+    p->id = ++Id;
+    p->idade = pessoa.idade;
+    strcpy(p->nome, pessoa.nome);
+
+    return p;
+}
+
+Pessoa  *obtemPessoa(int id, No *lista) {
+    No *no = lista;
+    while(no != NULL){
+        if(no->pessoa->id == id) return no->pessoa;
+        no = no->prox;
+    }    
+}
