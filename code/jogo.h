@@ -19,41 +19,49 @@ const char * const JOGO_DESCRIPTIONS[JOGO_N] = {
     "Volta ao menu principal"
 };
 
+
+/*/
+typedef struct _cmd {
+    char *cmd;
+    struct _cmd *prox;
+} CMD;
+// comandos
+CMD *cmds;
+//*/
+
 //----------
 // Conjunto
 //----------
 typedef struct _conjunto {
 	int id;
-	No *pessoas;
-	No *prox;
+	int n;
+    No *pessoas;
+	struct _conjunto *prox;
 } Conjunto;
-
-typedef struct _cmd {
-    char *cmd;
-    struct _cmd *prox;
-} CMD;
 
 //---------
 // Jogador
 //---------
 typedef struct _jogador Jogador;
 struct _jogador {
-    Pessoa jogador;
     // AFAZER dados do jogo
     struct _cmd *cmds;
 };
 
-// historico
-CMD *cmds;
-
 //
 int Jogador_Ativo = 1;
+
 // contador de grupos
 int Conjuntos = 0;
+
 // jogadores
 Jogador jogadores[2];
+
 // grupos
 Conjunto *conjuntos = NULL;
+
+// Pessoas
+No *pessoas = NULL;
 
 // função principal do jogo
 No *Jogo(No *);
@@ -63,5 +71,6 @@ void jogo_recuperar();
 void jogo_salvar();
 void jogo_ajuda();
 void jogo_default(int);
+void jogo_init(No *);
 
 #endif // JOGO_H
