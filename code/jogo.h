@@ -1,4 +1,5 @@
 #include "distribui.h" 
+#include "zelib.h"
 
 #ifndef JOGO_H
 #define JOGO_H
@@ -18,18 +19,19 @@ const char * const JOGO_DESCRIPTIONS[JOGO_N] = {
     "Volta ao menu principal"
 };
 
-//-------
-// Grupo
-//-------
-typedef struct _grupo {
+//----------
+// Conjunto
+//----------
+typedef struct _conjunto {
 	int id;
 	No *pessoas;
 	No *prox;
-} Grupo;
-// contador de grupos
-int Grupos_N = 0;
-// grupos
-Grupo *grupos = NULL;
+} Conjunto;
+
+typedef struct _cmd {
+    char *cmd;
+    struct _cmd *prox;
+} CMD;
 
 //---------
 // Jogador
@@ -38,9 +40,20 @@ typedef struct _jogador Jogador;
 struct _jogador {
     Pessoa jogador;
     // AFAZER dados do jogo
+    struct _cmd *cmds;
 };
+
+// historico
+CMD *cmds;
+
+//
+int Jogador_Ativo = 1;
+// contador de grupos
+int Conjuntos = 0;
 // jogadores
 Jogador jogadores[2];
+// grupos
+Conjunto *conjuntos = NULL;
 
 // função principal do jogo
 No *Jogo(No *);
