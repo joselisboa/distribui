@@ -1,0 +1,18 @@
+
+OBJECTIVO
+    objetivo do jogo e distribuir algumas pessoas por varios conjuntos, de form
+    a a minimizar um determinado criterio de avaliacao. O jogo inicia-se com
+    uma distribuicao aleatoria das pessoas pelos conjuntos, prossegue com
+    jogadas alternadas dos 2 jogadores envolvendo a mudança de pessoas entre
+    conjuntos e termina quando um dos jogadores nao conseguir melhorar a
+    distribuição atual.
+
+VENCEDOR
+   O jogo termina quando uma jogada que nao diminui a dispersao.
+   Nesta situacao, o outro jogador sera o vencedor.
+
+REGRAS
+  - Cada pessoa pode aparecer repetida em varios conjuntos (no maximo, 3);
+  - Cada pessoa tem que surgir, no minimo, num conjunto;
+  - Cada conjunto deve ter, no minimo, 2 pessoas;
+  - Uma pessoa nao pode aparecer duplicada no mesmo conjunto.
