@@ -17,6 +17,10 @@ No *Dados(No *lista){
         break;
         case 3: lista = dados_remover(lista);
         break;
+        case 4: lista = dados_importar(lista);
+        break;
+        case 5: dados_exportar(lista);
+        break;
         case 6: dados_ajuda();
         break;
         case 7:// voltar
@@ -80,7 +84,7 @@ No *dados_remover(No *lista){
 
     zenter_cls(DADOS_NOME);
     putz("[Remover Pessoa]", 11);
-    
+
     printf("Id: ");
     scanf("%d", &id);
     if(id > 0) {
@@ -99,12 +103,94 @@ No *dados_remover(No *lista){
     return lista;
 }
 
+// importa pessoas num ficheiro de texto
+// ELIMINA OS DADOS DA LISTA ATUAL! 
+No *dados_importar(No *lista){
+    FILE *fd = fopen(DADOS_TXT, "r");
+    if(fd == NULL) {
+        printz(12, "ERRO a abrir o ficheiro '%s'\n", DADOS_TXT);
+        pausa();
+        return lista;
+    }
+
+    lista = libertaLista(lista);
+    if(lista != NULL) die("LISTA NAO NULA");
+
+    int i = 0, k = 0;
+    char c = '\0';
+    Pessoa pessoa;
+    //*/
+    // nome e idade numa linha separados por uma vírgula
+    while((c = fgetc(fd)) != EOF && i < 100) {
+        if(c == ',') {
+            pessoa.nome[i] = '\0';
+            fscanf(fd, " %d ", &pessoa.idade);
+            lista = adicionaNo(pessoa, lista);
+            printf("%d: %s, %d\n", Id, pessoa.nome, pessoa.idade);
+            i = 0;
+            k++;
+        }
+        else pessoa.nome[i++] = c;
+    }
+    /*/
+    // nome numa linha e idade na seguinte linha 
+    while(fgets(pessoa.nome, 100, fd) != NULL) {
+        pessoa.nome[strlen(pessoa.nome)-1] = '\0';
+        fscanf(fd, " %d ", &pessoa.idade);
+        lista = adicionaNo(pessoa, lista);
+        printf("%d: %s, %d\n", Id, pessoa.nome, pessoa.idade);
+        k++;
+    }
+    //*/
+    fclose(fd);
+
+    //--------------------------------------------------------
+    zenter_cls(DADOS_NOME);
+    printz(11, "[Importar do ficheiro '%s']\n", DADOS_TXT);
+
+    dados_guardar(lista);
+    printz(10, "[%d pessoas importadas]\n", k);
+    pausa();
+
+    return lista;
+}
+
+void dados_exportar(No *lista){
+    // abrir ficheiro de texto em modo de escrita
+    FILE *fd = fopen(DADOS_TXT, "w");
+    if(fd == NULL) {
+        printz(12, "ERRO a abrir o ficheiro '%s'\n", DADOS_TXT);
+        pausa();
+        return;
+    }
+
+    // copiar as pessoas na lista para o ficheiro de texto
+    No *no = lista;
+    while(no != NULL) {
+        //fprintf(fd, "%s\n%d\n\n", no->pessoa->nome, no->pessoa->idade);
+        fprintf(fd, "%s, %d\n", no->pessoa->nome, no->pessoa->idade);
+        no = no->prox;
+    }
+
+    fclose(fd);
+
+    //-----------output-----------------
+    zenter_cls(DADOS_NOME);
+    printz(11, "[Exportar para o ficheiro '%s']\n", DADOS_TXT);
+
+    // verificar se gravou o ficheiro
+    if(file_exists(DADOS_TXT)) putz("[dados exportados com sucesso]", 10);
+    else putz("[dados NAO exportados]", 12);
+
+    pausa();
+}
+
 // guarda a lista de pessoas no ficheiro
 int dados_guardar(No *lista){
     FILE *fd = fopen(PESSOAS_DAT, "wb");
 
     if(fd == NULL){
-        printf("[Erro de acesso ao ficheiro '%s']\n", PESSOAS_DAT);
+        printf("[Erro no acesso ao ficheiro '%s']\n", PESSOAS_DAT);
         return -1;
     }
 

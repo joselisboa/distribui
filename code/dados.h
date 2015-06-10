@@ -4,6 +4,7 @@
 #define DADOS_H
 #define DADOS_NOME "Gestao da Lista de Pessoas"
 #define DADOS_N 7
+#define DADOS_TXT "pessoas.txt"
 
 // opções
 const char * const DADOS_OPTIONS[DADOS_N] = {
@@ -29,6 +30,8 @@ No *dados_remover(No *);
 int dados_guardar(No *);
 void dados_ajuda();
 void dados_default(int);
+No *dados_importar(No *);
+void dados_exportar(No *);
 
 int guardaLista(No *);
 
