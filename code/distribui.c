@@ -63,7 +63,7 @@ void terminar(){
     // AFAZER: cleanup
     //halt("adeus");
     //splash();
-    //system("cls");
+    system("cls");
     die("Adeus");
 }
 
@@ -161,4 +161,21 @@ No *libertaNo(No *no){
     zeFree(no->pessoa);
     if(no->pessoa == NULL) zeFree(no);
     return no;
+}
+
+No *libertaLista(No *lista){
+    // limpar a lista
+    if(lista != NULL) {
+        No *no = lista;
+        while(lista != NULL) {
+            no = lista;
+            lista = lista->prox;
+            libertaNo(no);
+        }
+    }
+
+    Id = 0;
+    Pessoas = 0;
+
+    return lista;
 }

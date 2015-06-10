@@ -45,8 +45,9 @@ void terminar();
 void splash();
 
 No *Lista();
-No *libertaNo(No *);
 No *adicionaNo(Pessoa, No *);
 No *removeNo(int *, No *);
+No *libertaNo(No *);
+No *libertaLista(No *);
 
 #endif
