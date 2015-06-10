@@ -1,0 +1,22 @@
+INSERIR <pessoa_id> <conjunto_id>
+    Inserir uma pessoa num conjunto:
+    INSERIR 4 5 (insere pessoa #4 no conjunto #5)
+
+ELIMINAR <pessoa_id> <conjunto_id>
+    Eliminar uma pessoa de um conjunto:
+    ELIMINAR 12 1 (elimina a pessoa #12 do conjunto #1)
+
+TRANSFERIR <pessoa_id> <conjunto_id>  <conjunto_id>
+    Transferir uma pessoa de um conjunto para outro:
+    TRANSFERIR 21 10 3 (move a pessoa #21 do conjunto #10 para o conjunto #3)
+
+CONJUNTOS
+    Visualizar estado dos conjuntos
+
+CONJUNTO <conjunto_id>
+    Visualizar info dum conjunto
+    CONJUNTO 5 (ver info do conjunto 5)
+
+PESSOA <pessoa_id>
+    Visualizar info duma pessoa
+    PESSOA 14 (ver estado da pessoa 14)
